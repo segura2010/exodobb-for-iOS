@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F571285D21FE351B0C60609 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D86FF4C86286D2092713AF2F /* Pods.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		D34FA16D1BAC6B9C00F79FDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34FA16C1BAC6B9C00F79FDD /* AppDelegate.swift */; };
 		D34FA16F1BAC6B9C00F79FDD /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34FA16E1BAC6B9C00F79FDD /* FirstViewController.swift */; };
 		D34FA1711BAC6B9C00F79FDD /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34FA1701BAC6B9C00F79FDD /* SecondViewController.swift */; };
 		D34FA1741BAC6B9C00F79FDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34FA1721BAC6B9C00F79FDD /* Main.storyboard */; };
 		D34FA1761BAC6B9C00F79FDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34FA1751BAC6B9C00F79FDD /* Assets.xcassets */; };
 		D34FA1791BAC6B9C00F79FDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34FA1771BAC6B9C00F79FDD /* LaunchScreen.storyboard */; };
-		D3CE06F11BAC6DCE005EE82D /* SwiftWebSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CE06F01BAC6DCE005EE82D /* SwiftWebSocket.framework */; };
+		D3AB3F211BADC3E900B91091 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AB3F201BADC3E900B91091 /* Thread.swift */; settings = {ASSET_TAGS = (); }; };
+		D3AF71A61BADB96100B33DF7 /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF71A51BADB96100B33DF7 /* ThreadCell.swift */; settings = {ASSET_TAGS = (); }; };
 		D3CE06F31BAC6DD4005EE82D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CE06F21BAC6DD4005EE82D /* libz.tbd */; };
 		D3CE06F51BAC6E01005EE82D /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CE06F41BAC6E01005EE82D /* WebSocket.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -30,6 +30,8 @@
 		D34FA1751BAC6B9C00F79FDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D34FA1781BAC6B9C00F79FDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D34FA17A1BAC6B9C00F79FDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3AB3F201BADC3E900B91091 /* Thread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
+		D3AF71A51BADB96100B33DF7 /* ThreadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadCell.swift; sourceTree = "<group>"; };
 		D3CE06F01BAC6DCE005EE82D /* SwiftWebSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftWebSocket.framework; path = "Pods/../build/Debug-iphoneos/SwiftWebSocket.framework"; sourceTree = "<group>"; };
 		D3CE06F21BAC6DD4005EE82D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D3CE06F41BAC6E01005EE82D /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = ../../WebSocket.swift; sourceTree = "<group>"; };
@@ -42,8 +44,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3CE06F31BAC6DD4005EE82D /* libz.tbd in Frameworks */,
-				D3CE06F11BAC6DCE005EE82D /* SwiftWebSocket.framework in Frameworks */,
-				6F571285D21FE351B0C60609 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +98,8 @@
 				D34FA1751BAC6B9C00F79FDD /* Assets.xcassets */,
 				D34FA1771BAC6B9C00F79FDD /* LaunchScreen.storyboard */,
 				D34FA17A1BAC6B9C00F79FDD /* Info.plist */,
+				D3AF71A51BADB96100B33DF7 /* ThreadCell.swift */,
+				D3AB3F201BADC3E900B91091 /* Thread.swift */,
 			);
 			path = exodoapp;
 			sourceTree = "<group>";
@@ -225,7 +227,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D34FA1711BAC6B9C00F79FDD /* SecondViewController.swift in Sources */,
+				D3AB3F211BADC3E900B91091 /* Thread.swift in Sources */,
 				D3CE06F51BAC6E01005EE82D /* WebSocket.swift in Sources */,
+				D3AF71A61BADB96100B33DF7 /* ThreadCell.swift in Sources */,
 				D34FA16D1BAC6B9C00F79FDD /* AppDelegate.swift in Sources */,
 				D34FA16F1BAC6B9C00F79FDD /* FirstViewController.swift in Sources */,
 			);
