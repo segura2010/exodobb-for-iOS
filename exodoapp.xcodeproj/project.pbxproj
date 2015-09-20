@@ -13,6 +13,9 @@
 		D34FA1741BAC6B9C00F79FDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34FA1721BAC6B9C00F79FDD /* Main.storyboard */; };
 		D34FA1761BAC6B9C00F79FDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34FA1751BAC6B9C00F79FDD /* Assets.xcassets */; };
 		D34FA1791BAC6B9C00F79FDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34FA1771BAC6B9C00F79FDD /* LaunchScreen.storyboard */; };
+		D39780011BAEC43E0016865A /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39780001BAEC43E0016865A /* PostCell.swift */; settings = {ASSET_TAGS = (); }; };
+		D39780031BAEC4530016865A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39780021BAEC4530016865A /* Post.swift */; settings = {ASSET_TAGS = (); }; };
+		D39780051BAECCCA0016865A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39780041BAECCCA0016865A /* PostViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		D3AB3F211BADC3E900B91091 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AB3F201BADC3E900B91091 /* Thread.swift */; settings = {ASSET_TAGS = (); }; };
 		D3AB3F231BADF1FF00B91091 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AB3F221BADF1FF00B91091 /* TopicViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		D3AF71A61BADB96100B33DF7 /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF71A51BADB96100B33DF7 /* ThreadCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -31,6 +34,9 @@
 		D34FA1751BAC6B9C00F79FDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D34FA1781BAC6B9C00F79FDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D34FA17A1BAC6B9C00F79FDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D39780001BAEC43E0016865A /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		D39780021BAEC4530016865A /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		D39780041BAECCCA0016865A /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		D3AB3F201BADC3E900B91091 /* Thread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
 		D3AB3F221BADF1FF00B91091 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		D3AF71A51BADB96100B33DF7 /* ThreadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadCell.swift; sourceTree = "<group>"; };
@@ -103,6 +109,9 @@
 				D3AF71A51BADB96100B33DF7 /* ThreadCell.swift */,
 				D3AB3F201BADC3E900B91091 /* Thread.swift */,
 				D3AB3F221BADF1FF00B91091 /* TopicViewController.swift */,
+				D39780001BAEC43E0016865A /* PostCell.swift */,
+				D39780021BAEC4530016865A /* Post.swift */,
+				D39780041BAECCCA0016865A /* PostViewController.swift */,
 			);
 			path = exodoapp;
 			sourceTree = "<group>";
@@ -233,9 +242,12 @@
 				D3AB3F211BADC3E900B91091 /* Thread.swift in Sources */,
 				D3CE06F51BAC6E01005EE82D /* WebSocket.swift in Sources */,
 				D3AF71A61BADB96100B33DF7 /* ThreadCell.swift in Sources */,
+				D39780051BAECCCA0016865A /* PostViewController.swift in Sources */,
 				D34FA16D1BAC6B9C00F79FDD /* AppDelegate.swift in Sources */,
 				D34FA16F1BAC6B9C00F79FDD /* FirstViewController.swift in Sources */,
+				D39780031BAEC4530016865A /* Post.swift in Sources */,
 				D3AB3F231BADF1FF00B91091 /* TopicViewController.swift in Sources */,
+				D39780011BAEC43E0016865A /* PostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,14 +23,19 @@ class Thread {
         self.title = threadDic["title"] as? String
         self.tid = threadDic["tid"] as? Int
         self.cid = threadDic["cid"] as? Int
-        self.slug = threadDic["slug"] as? String
+        self.slug = threadDic["slug"] as! String
         self.creationDate = threadDic["relativeTime"] as? String
         self.lastPostDate = threadDic["lastposttimeISO"] as? String
         
-        let kk = threadDic as! NSDictionary
+        //let kk = threadDic as! NSDictionary
         //var kk2 = kk!["user"]! as? Dictionary<String, AnyObject>
-        //print(kk)
-        self.lastPostUser = kk.objectForKey("teaser")!.objectForKey("user")!.objectForKey("username") as! String
+        
+        if let teaser = threadDic["teaser"] as? NSDictionary{
+            self.lastPostUser = teaser.objectForKey("user")?.objectForKey("username") as! String
+        }
+        else if let user = threadDic["user"] as? NSDictionary{
+            self.lastPostUser = user.objectForKey("username") as! String
+        }
     }
     
 }

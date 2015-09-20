@@ -19,9 +19,10 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var nextStart = 10
     
     let URL_BASE_API = "http://exo.do/api/"
+    var cookie = "express.sid=s%3A__-ac0uagDGV9Bvke068pPaIUrCDw5pK.Mo0UrV%2FKBZCEgmAbkx91E0X%2Bkh9fiYa0%2B9xvD%2BcGwS0;"
     
     var messageNum = 421
-    let ws = WebSocket("ws://ws.exo.do/socket.io/?EIO=3&transport=websocket") //"ws://localhost:4567/socket.io/?EIO=3&transport=websocket")
+    var ws = WebSocket("ws://ws.exo.do/socket.io/?EIO=3&transport=websocket") //"ws://localhost:4567/socket.io/?EIO=3&transport=websocket")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -179,6 +180,23 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func loadMoreBtnClick(sender: AnyObject) {
         requestUpdateThreads(nextStart)
+    }
+    
+    // Table details
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        
+        var topicView = segue.destinationViewController as! TopicViewController
+        if let indexPath = self.tableView.indexPathForCell(sender as! UITableViewCell){
+            if(indexPath.row < topics.count){
+                let topic = topics[indexPath.row]
+                topicView.topic = topic
+                topicView.cookie = self.cookie
+            }
+        }
+        
     }
     
 
