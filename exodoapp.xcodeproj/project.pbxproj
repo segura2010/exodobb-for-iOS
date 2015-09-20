@@ -16,6 +16,7 @@
 		D39780011BAEC43E0016865A /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39780001BAEC43E0016865A /* PostCell.swift */; settings = {ASSET_TAGS = (); }; };
 		D39780031BAEC4530016865A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39780021BAEC4530016865A /* Post.swift */; settings = {ASSET_TAGS = (); }; };
 		D39780051BAECCCA0016865A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39780041BAECCCA0016865A /* PostViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		D39780081BAEDE540016865A /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D39780061BAEDE540016865A /* DataModel.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		D3AB3F211BADC3E900B91091 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AB3F201BADC3E900B91091 /* Thread.swift */; settings = {ASSET_TAGS = (); }; };
 		D3AB3F231BADF1FF00B91091 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AB3F221BADF1FF00B91091 /* TopicViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		D3AF71A61BADB96100B33DF7 /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF71A51BADB96100B33DF7 /* ThreadCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -37,6 +38,7 @@
 		D39780001BAEC43E0016865A /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		D39780021BAEC4530016865A /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D39780041BAECCCA0016865A /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		D39780071BAEDE540016865A /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		D3AB3F201BADC3E900B91091 /* Thread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
 		D3AB3F221BADF1FF00B91091 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		D3AF71A51BADB96100B33DF7 /* ThreadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadCell.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				D39780001BAEC43E0016865A /* PostCell.swift */,
 				D39780021BAEC4530016865A /* Post.swift */,
 				D39780041BAECCCA0016865A /* PostViewController.swift */,
+				D39780061BAEDE540016865A /* DataModel.xcdatamodeld */,
 			);
 			path = exodoapp;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D39780081BAEDE540016865A /* DataModel.xcdatamodeld in Sources */,
 				D34FA1711BAC6B9C00F79FDD /* SecondViewController.swift in Sources */,
 				D3AB3F211BADC3E900B91091 /* Thread.swift in Sources */,
 				D3CE06F51BAC6E01005EE82D /* WebSocket.swift in Sources */,
@@ -410,6 +414,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D39780061BAEDE540016865A /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D39780071BAEDE540016865A /* DataModel.xcdatamodel */,
+			);
+			currentVersion = D39780071BAEDE540016865A /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D34FA1611BAC6B9C00F79FDD /* Project object */;
 }
