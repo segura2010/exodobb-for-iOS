@@ -17,6 +17,7 @@ class Thread {
     var creationDate: String!
     var lastPostDate: String!
     var lastPostUser: String!
+    var unread: Bool!
     
     init(threadDic: Dictionary<String, AnyObject>)
     {
@@ -26,6 +27,7 @@ class Thread {
         self.slug = threadDic["slug"] as! String
         self.creationDate = threadDic["relativeTime"] as? String
         self.lastPostDate = threadDic["lastposttimeISO"] as? String
+        self.unread = threadDic["unread"] as? Bool
         
         //let kk = threadDic as! NSDictionary
         //var kk2 = kk!["user"]! as? Dictionary<String, AnyObject>

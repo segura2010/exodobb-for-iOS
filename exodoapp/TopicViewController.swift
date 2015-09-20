@@ -98,9 +98,9 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     // check and make sure that json has a value using optional binding.
                     if let parseJSON = json
                     {
-                        self.maxPage = parseJSON["pageCount"] as! Int
                         
                         if let posts = parseJSON["posts"] as? [Dictionary<String, AnyObject>] {
+                            self.maxPage = parseJSON["pageCount"] as! Int
                             self.posts = [Post]()
                             for p in posts
                             {

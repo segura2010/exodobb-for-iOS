@@ -20,13 +20,15 @@ class PostViewController: UIViewController {
     var post: Post!
     
     
-    var cookie = "express.sid=s%3A__-ac0uagDGV9Bvke068pPaIUrCDw5pK.Mo0UrV%2FKBZCEgmAbkx91E0X%2Bkh9fiYa0%2B9xvD%2BcGwS0;"
+    var cookie = ""
     
     var messageNum = 421
     var ws = WebSocket("ws://ws.exo.do/socket.io/?EIO=3&transport=websocket")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cookie = SecondViewController.getCookie()
         
         var html = "<link rel=\"stylesheet\" type=\"text/css\" href=\"/stylesheet.css\"> \(post.content)"
         
