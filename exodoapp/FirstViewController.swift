@@ -11,6 +11,7 @@ import UIKit
 
 class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet var indicator: UIActivityIndicatorView!
     @IBOutlet var refreshBtn: UIButton!
     @IBOutlet var loadMoreBtn: UIButton!
     
@@ -27,6 +28,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        indicator.hidesWhenStopped = true
         
         cookie = SecondViewController.getCookie()
         
@@ -81,6 +84,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         ws.event.close = { code, reason, clean in
             print("close")
+            self.ws = WebSocket("ws://ws.exo.do/socket.io/?EIO=3&transport=websocket")
+            self.initWSEvents()
         }
         ws.event.error = { error in
             print("error \(error)")
@@ -107,6 +112,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     let msg = "\(++self.messageNum)[\"meta.rooms.enter\",{\"enter\":\"recent_topics\",\"username\":\"\",\"userslug\":\"\",\"picture\":\"\",\"status\":\"online\"}]"
                     self.ws.send(msg)
                     
+                    // Prepare Ping
+                    self.Ping()
                 }
                 else if(data.hasPrefix("{\"topics\":"))
                 {   // Topics received
@@ -132,6 +139,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func requestUpdateThreads(start:Int)
     {
+        self.indicator.startAnimating()
         let msg = "\(++self.messageNum)[\"topics.loadMoreFromSet\",{\"after\":\"\(start)\",\"set\":\"topics:recent\"}]"
         ws.send(msg)
     }
@@ -151,15 +159,16 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let topics = json!["topics"] as? [Dictionary<String, AnyObject>]
             
             for t in topics!{
-                print(t["tid"])
+                //print(t["tid"])
                 let topic = Thread(threadDic: t)
-                print(topic.title)
+                //print(topic.title)
                 self.topics.append(topic)
             }
             
             // Main UI Thread
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
+                self.indicator.stopAnimating()
             })
             
         }catch{
@@ -167,9 +176,9 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    func requestUpdatePosts(start:Int)
+    func markAsRead(id:Int)
     {
-        let msg = "\(++self.messageNum)[\"topics.loadMore\",{\"tid\":15954,\"after\":\(start)}]"
+        let msg = "\(++self.messageNum)[\"topics.markAsRead\",[\(id)]]"
         ws.send(msg)
     }
     
@@ -181,12 +190,15 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func loadMoreBtnClick(sender: AnyObject) {
+        self.indicator.startAnimating()
         requestUpdateThreads(nextStart)
     }
     
     @IBAction func readAllBtnClick(sender: AnyObject) {
+        indicator.startAnimating()
         let msg = "\(++self.messageNum)[\"topics.markAllRead\"]"
         self.ws.send(msg)
+        requestUpdateThreads(0)
     }
     
     // Table details
@@ -201,9 +213,22 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 let topic = topics[indexPath.row]
                 topicView.topic = topic
                 topicView.cookie = self.cookie
+                markAsRead(topic.tid)
             }
         }
         
+    }
+    
+    
+    // WebSockets Ping
+    func Ping(){
+        //print("Ping..")
+        self.ws.send("2") // Send ping..
+        var delta: Int64 = 10 * Int64(NSEC_PER_SEC)
+        var time = dispatch_time(DISPATCH_TIME_NOW, delta)
+        dispatch_after(time, dispatch_get_main_queue(), {
+            self.Ping()
+        })
     }
 
 }

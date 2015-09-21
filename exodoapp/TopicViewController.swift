@@ -89,9 +89,9 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                 do{
-                    print("Response: \(response)")
+                    //print("Response: \(response)")
                     let strData = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                    print("Body: \(strData)")
+                    //print("Body: \(strData)")
                     let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves) as? NSDictionary
                     
                     // The JSONObjectWithData constructor didn't return an error. But, we should still

@@ -36,7 +36,15 @@ class PostViewController: UIViewController {
         
         replyTextView.text = "@\(post.userslug) "
         
+        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        view.addGestureRecognizer(tap)
+        
         // Do any additional setup after loading the view.
+    }
+    
+    func DismissKeyboard(){
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,17 +80,14 @@ class PostViewController: UIViewController {
                 
                 if(data.hasSuffix("connect\"]"))
                 {
-                    print("isConnect!!")
+                    print("isConnect!! on PostView")
+                    self.Ping()
                     
                     self.replyTextView.editable = true
                     
                     //let msg = "\(++self.messageNum)[\"meta.rooms.enter\",{\"enter\":\"recent_topics\",\"username\":\"\",\"userslug\":\"\",\"picture\":\"\",\"status\":\"online\"}]"
                     //self.ws.send(msg)
                     
-                }
-                else if(data.hasPrefix("{\"topics\":"))
-                {   // Topics received
-                    //self.updateThreads(data)
                 }
                 
                 /*
@@ -120,4 +125,15 @@ class PostViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion:nil)
     }
     
+    
+    // WebSockets Ping
+    func Ping(){
+        print("Ping from PostView..")
+        self.ws.send("2") // Send ping..
+        var delta: Int64 = 10 * Int64(NSEC_PER_SEC)
+        var time = dispatch_time(DISPATCH_TIME_NOW, delta)
+        dispatch_after(time, dispatch_get_main_queue(), {
+            self.Ping()
+        })
+    }
 }

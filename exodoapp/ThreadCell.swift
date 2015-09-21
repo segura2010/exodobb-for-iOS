@@ -26,6 +26,9 @@ class ThreadCell: UITableViewCell {
         if (topic.unread != false){
             titleLbl.textColor = UIColor.blueColor()
         }
+        else{
+            titleLbl.textColor = UIColor.blackColor()
+        }
         infoLbl.text = topic.lastPostUser + " - " + topic.lastPostDate
     }
 
