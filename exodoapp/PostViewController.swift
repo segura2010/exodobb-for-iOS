@@ -22,8 +22,8 @@ class PostViewController: UIViewController {
     
     var cookie = ""
     
-    var messageNum = 421
-    var ws = WebSocket("ws://ws.exo.do/socket.io/?EIO=3&transport=websocket")
+    //var messageNum = 421
+    //var ws = WebSocket("ws://ws.exo.do/socket.io/?EIO=3&transport=websocket")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +52,7 @@ class PostViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    /*
     func initWSEvents(){
         ws.event.open = {
             print("opened")
@@ -100,7 +100,7 @@ class PostViewController: UIViewController {
                 
             }
         }
-    }
+    }*/
     
     
     
@@ -109,9 +109,9 @@ class PostViewController: UIViewController {
         
         refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
             print("Handle Ok logic here")
-            let msg = "\(++self.messageNum)[\"posts.reply\",{\"tid\":\(self.post.tid),\"content\":\"\(self.replyTextView.text)\",\"lock\":false}]"
+            let msg = "\(messageNum)[\"posts.reply\",{\"tid\":\(self.post.tid),\"content\":\"\(self.replyTextView.text)\",\"lock\":false}]"
             print(msg)
-            self.ws.send(msg)
+            ws.send(msg)
         }))
         
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
@@ -129,7 +129,7 @@ class PostViewController: UIViewController {
     // WebSockets Ping
     func Ping(){
         print("Ping from PostView..")
-        self.ws.send("2") // Send ping..
+        ws.send("2") // Send ping..
         var delta: Int64 = 10 * Int64(NSEC_PER_SEC)
         var time = dispatch_time(DISPATCH_TIME_NOW, delta)
         dispatch_after(time, dispatch_get_main_queue(), {

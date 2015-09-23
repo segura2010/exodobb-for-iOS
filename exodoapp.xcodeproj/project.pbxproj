@@ -17,6 +17,11 @@
 		D39780031BAEC4530016865A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39780021BAEC4530016865A /* Post.swift */; settings = {ASSET_TAGS = (); }; };
 		D39780051BAECCCA0016865A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39780041BAECCCA0016865A /* PostViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		D39780081BAEDE540016865A /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D39780061BAEDE540016865A /* DataModel.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
+		D39AD8D91BB2F8D300A6F749 /* UserChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AD8D81BB2F8D300A6F749 /* UserChatCell.swift */; settings = {ASSET_TAGS = (); }; };
+		D39AD8DB1BB2F90800A6F749 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AD8DA1BB2F90800A6F749 /* User.swift */; settings = {ASSET_TAGS = (); }; };
+		D39AD8DD1BB2FA2300A6F749 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AD8DC1BB2FA2300A6F749 /* ChatTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		D39AD8DF1BB3122200A6F749 /* UserChatMessageCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AD8DE1BB3122200A6F749 /* UserChatMessageCellTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		D39AD8E11BB3125400A6F749 /* UserChatMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AD8E01BB3125400A6F749 /* UserChatMessageTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		D3AB3F211BADC3E900B91091 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AB3F201BADC3E900B91091 /* Thread.swift */; settings = {ASSET_TAGS = (); }; };
 		D3AB3F231BADF1FF00B91091 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AB3F221BADF1FF00B91091 /* TopicViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		D3AF71A61BADB96100B33DF7 /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF71A51BADB96100B33DF7 /* ThreadCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -27,7 +32,7 @@
 /* Begin PBXFileReference section */
 		3F49EA4CC21340B6C397BD93 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8A109B7063B5FCDC08A2D7A3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		D34FA1691BAC6B9C00F79FDD /* exodoapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = exodoapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D34FA1691BAC6B9C00F79FDD /* ExodoBB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExodoBB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34FA16C1BAC6B9C00F79FDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D34FA16E1BAC6B9C00F79FDD /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		D34FA1701BAC6B9C00F79FDD /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +44,11 @@
 		D39780021BAEC4530016865A /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D39780041BAECCCA0016865A /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		D39780071BAEDE540016865A /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		D39AD8D81BB2F8D300A6F749 /* UserChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChatCell.swift; sourceTree = "<group>"; };
+		D39AD8DA1BB2F90800A6F749 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D39AD8DC1BB2FA2300A6F749 /* ChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
+		D39AD8DE1BB3122200A6F749 /* UserChatMessageCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChatMessageCellTableViewCell.swift; sourceTree = "<group>"; };
+		D39AD8E01BB3125400A6F749 /* UserChatMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChatMessageTableViewController.swift; sourceTree = "<group>"; };
 		D3AB3F201BADC3E900B91091 /* Thread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
 		D3AB3F221BADF1FF00B91091 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		D3AF71A51BADB96100B33DF7 /* ThreadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadCell.swift; sourceTree = "<group>"; };
@@ -93,7 +103,7 @@
 		D34FA16A1BAC6B9C00F79FDD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D34FA1691BAC6B9C00F79FDD /* exodoapp.app */,
+				D34FA1691BAC6B9C00F79FDD /* ExodoBB.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,6 +125,11 @@
 				D39780021BAEC4530016865A /* Post.swift */,
 				D39780041BAECCCA0016865A /* PostViewController.swift */,
 				D39780061BAEDE540016865A /* DataModel.xcdatamodeld */,
+				D39AD8D81BB2F8D300A6F749 /* UserChatCell.swift */,
+				D39AD8DA1BB2F90800A6F749 /* User.swift */,
+				D39AD8DC1BB2FA2300A6F749 /* ChatTableViewController.swift */,
+				D39AD8DE1BB3122200A6F749 /* UserChatMessageCellTableViewCell.swift */,
+				D39AD8E01BB3125400A6F749 /* UserChatMessageTableViewController.swift */,
 			);
 			path = exodoapp;
 			sourceTree = "<group>";
@@ -139,7 +154,7 @@
 			);
 			name = exodoapp;
 			productName = exodoapp;
-			productReference = D34FA1691BAC6B9C00F79FDD /* exodoapp.app */;
+			productReference = D34FA1691BAC6B9C00F79FDD /* ExodoBB.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -241,17 +256,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D39AD8DB1BB2F90800A6F749 /* User.swift in Sources */,
 				D39780081BAEDE540016865A /* DataModel.xcdatamodeld in Sources */,
 				D34FA1711BAC6B9C00F79FDD /* SecondViewController.swift in Sources */,
 				D3AB3F211BADC3E900B91091 /* Thread.swift in Sources */,
 				D3CE06F51BAC6E01005EE82D /* WebSocket.swift in Sources */,
+				D39AD8DF1BB3122200A6F749 /* UserChatMessageCellTableViewCell.swift in Sources */,
 				D3AF71A61BADB96100B33DF7 /* ThreadCell.swift in Sources */,
 				D39780051BAECCCA0016865A /* PostViewController.swift in Sources */,
 				D34FA16D1BAC6B9C00F79FDD /* AppDelegate.swift in Sources */,
 				D34FA16F1BAC6B9C00F79FDD /* FirstViewController.swift in Sources */,
+				D39AD8D91BB2F8D300A6F749 /* UserChatCell.swift in Sources */,
 				D39780031BAEC4530016865A /* Post.swift in Sources */,
 				D3AB3F231BADF1FF00B91091 /* TopicViewController.swift in Sources */,
 				D39780011BAEC43E0016865A /* PostCell.swift in Sources */,
+				D39AD8E11BB3125400A6F749 /* UserChatMessageTableViewController.swift in Sources */,
+				D39AD8DD1BB2FA2300A6F749 /* ChatTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +392,7 @@
 				INFOPLIST_FILE = exodoapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = segura.exodoapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ExodoBB;
 			};
 			name = Debug;
 		};
@@ -388,7 +408,7 @@
 				INFOPLIST_FILE = exodoapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = segura.exodoapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ExodoBB;
 			};
 			name = Release;
 		};

@@ -9,6 +9,9 @@
 import UIKit
 //import SwiftWebSocket
 
+var ws = WebSocket("ws://ws.exo.do/socket.io/?EIO=3&transport=websocket")
+var messageNum = 421
+
 class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var indicator: UIActivityIndicatorView!
@@ -22,8 +25,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let URL_BASE_API = "http://exo.do/api/"
     var cookie = ""
     
-    var messageNum = 421
-    var ws = WebSocket("ws://ws.exo.do/socket.io/?EIO=3&transport=websocket") //"ws://localhost:4567/socket.io/?EIO=3&transport=websocket")
+    //var messageNum = 421
+    //var ws = WebSocket("ws://ws.exo.do/socket.io/?EIO=3&transport=websocket") //"ws://localhost:4567/socket.io/?EIO=3&transport=websocket")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +87,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         ws.event.close = { code, reason, clean in
             print("close")
-            self.ws = WebSocket("ws://ws.exo.do/socket.io/?EIO=3&transport=websocket")
+            ws = WebSocket("ws://ws.exo.do/socket.io/?EIO=3&transport=websocket")
             self.initWSEvents()
         }
         ws.event.error = { error in
@@ -108,9 +111,10 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     print("isConnect!!")
                     
                     self.requestUpdateThreads(0)
+                    self.requestChats()
                     
-                    let msg = "\(++self.messageNum)[\"meta.rooms.enter\",{\"enter\":\"recent_topics\",\"username\":\"\",\"userslug\":\"\",\"picture\":\"\",\"status\":\"online\"}]"
-                    self.ws.send(msg)
+                    let msg = "\(messageNum)[\"meta.rooms.enter\",{\"enter\":\"recent_topics\",\"username\":\"\",\"userslug\":\"\",\"picture\":\"\",\"status\":\"online\"}]"
+                    ws.send(msg)
                     
                     // Prepare Ping
                     self.Ping()
@@ -123,14 +127,20 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 {   // Posts for topic received
                     self.updateThreads(data)
                 }
-                
-                /* 
-                if messageNum == 10 {
-                    ws.close()
-                } else {
-                    send()
+                else if(data.hasPrefix("{\"users\":"))
+                {   // Chats received
+                    // Get chats view controller, and call update function
+                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    var ChatsVC = mainStoryboard.instantiateViewControllerWithIdentifier("ChatVC") as! ChatTableViewController
+                    ChatsVC.updateChats(data)
                 }
-                */
+                else if(data.hasPrefix("[{\"_key\""))
+                {   // Chats received
+                    // Get chats view controller, and call update function
+                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    var MessagesVC = mainStoryboard.instantiateViewControllerWithIdentifier("UserChatMessageVC") as! UserChatMessageTableViewController
+                    MessagesVC.updateMessages(data)
+                }
                 
             }
         }
@@ -140,7 +150,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func requestUpdateThreads(start:Int)
     {
         self.indicator.startAnimating()
-        let msg = "\(++self.messageNum)[\"topics.loadMoreFromSet\",{\"after\":\"\(start)\",\"set\":\"topics:recent\"}]"
+        let msg = "\(messageNum)[\"topics.loadMoreFromSet\",{\"after\":\"\(start)\",\"set\":\"topics:recent\"}]"
         ws.send(msg)
     }
     
@@ -178,7 +188,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func markAsRead(id:Int)
     {
-        let msg = "\(++self.messageNum)[\"topics.markAsRead\",[\(id)]]"
+        let msg = "\(messageNum)[\"topics.markAsRead\",[\(id)]]"
         ws.send(msg)
     }
     
@@ -196,8 +206,9 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func readAllBtnClick(sender: AnyObject) {
         indicator.startAnimating()
-        let msg = "\(++self.messageNum)[\"topics.markAllRead\"]"
-        self.ws.send(msg)
+        let msg = "\(messageNum)[\"topics.markAllRead\"]"
+        ws.send(msg)
+        topics = [Thread]()
         requestUpdateThreads(0)
     }
     
@@ -219,11 +230,18 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    // Request Chats
+    func requestChats()
+    {
+        let msg = "\(messageNum)[\"modules.chats.getRecentChats\",{\"after\":0}]"
+        ws.send(msg)
+    }
+    
     
     // WebSockets Ping
     func Ping(){
         //print("Ping..")
-        self.ws.send("2") // Send ping..
+        ws.send("2") // Send ping..
         var delta: Int64 = 10 * Int64(NSEC_PER_SEC)
         var time = dispatch_time(DISPATCH_TIME_NOW, delta)
         dispatch_after(time, dispatch_get_main_queue(), {

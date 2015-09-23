@@ -7,7 +7,7 @@
         <!--Recents-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="exodoapp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="ExodoBB" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="58" width="320" height="461"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TopicCell" rowHeight="77" id="RaK-gm-gQx" customClass="ThreadCell" customModule="exodoapp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TopicCell" rowHeight="77" id="RaK-gm-gQx" customClass="ThreadCell" customModule="ExodoBB" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="77"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RaK-gm-gQx" id="3jM-JD-clP">
@@ -93,7 +93,7 @@
         <!--Topic View Controller-->
         <scene sceneID="GdG-ZI-UQA">
             <objects>
-                <viewController id="diX-ox-bbL" customClass="TopicViewController" customModule="exodoapp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="diX-ox-bbL" customClass="TopicViewController" customModule="ExodoBB" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eQ9-ie-NOD"/>
                         <viewControllerLayoutGuide type="bottom" id="2dI-tl-OsW"/>
@@ -113,7 +113,7 @@
                                 <rect key="frame" x="0.0" y="58" width="320" height="453"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="121" id="eam-gz-STx" customClass="PostCell" customModule="exodoapp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="121" id="eam-gz-STx" customClass="PostCell" customModule="ExodoBB" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="121"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eam-gz-STx" id="29K-9R-Wh2">
@@ -189,7 +189,7 @@
         <!--Post View Controller-->
         <scene sceneID="FFu-Gv-eMt">
             <objects>
-                <viewController id="dv3-tS-eAs" customClass="PostViewController" customModule="exodoapp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dv3-tS-eAs" customClass="PostViewController" customModule="ExodoBB" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JMi-hB-6hP"/>
                         <viewControllerLayoutGuide type="bottom" id="2Ba-XH-lob"/>
@@ -245,7 +245,7 @@
         <!--Settings-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="exodoapp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="ExodoBB" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -313,7 +313,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="538" y="200"/>
+            <point key="canvasLocation" x="538" y="673"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -328,12 +328,124 @@
                     </tabBar>
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="zgf-F6-Zvq" kind="relationship" relationship="viewControllers" id="uFv-64-XHs"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="28" y="-6"/>
+        </scene>
+        <!--Chat-->
+        <scene sceneID="4Rv-xB-nHh">
+            <objects>
+                <tableViewController storyboardIdentifier="ChatVC" id="L6h-sq-TzN" customClass="ChatTableViewController" customModule="ExodoBB" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" id="V9u-WY-hnA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="UserChatCell" rowHeight="70" id="ofU-8z-gge" customClass="UserChatCell" customModule="ExodoBB" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ofU-8z-gge" id="MEw-tI-OrW">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="69.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lKv-kI-WiK">
+                                            <rect key="frame" x="8" y="8" width="50" height="50"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ZE-wH-FB1">
+                                            <rect key="frame" x="66" y="24" width="213" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="picture" destination="lKv-kI-WiK" id="ycC-VS-NJq"/>
+                                    <outlet property="username" destination="7ZE-wH-FB1" id="mq4-PQ-VOq"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="L6h-sq-TzN" id="ast-xZ-VFP"/>
+                            <outlet property="delegate" destination="L6h-sq-TzN" id="LUm-zm-zKp"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Chat" id="4pP-3e-bH6">
+                        <barButtonItem key="rightBarButtonItem" title="Refresh" id="eWQ-eV-e78">
+                            <connections>
+                                <action selector="refreshBtnClick:" destination="L6h-sq-TzN" id="y2T-Wz-37S"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <segue destination="yJc-ya-agP" kind="show" id="Ayt-nK-dMS"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gvw-xb-Roa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="988" y="5"/>
+        </scene>
+        <!--User-->
+        <scene sceneID="kVu-zk-oz2">
+            <objects>
+                <tableViewController storyboardIdentifier="UserChatMessageVC" id="yJc-ya-agP" customClass="UserChatMessageTableViewController" customModule="ExodoBB" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" id="xIG-Fm-0Xn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserChatMessageCell" rowHeight="120" id="lE4-EK-Ic2" customClass="UserChatMessageCellTableViewCell" customModule="ExodoBB" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="120"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lE4-EK-Ic2" id="791-76-drW">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="119.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qgb-uO-plr">
+                                            <rect key="frame" x="8" y="8" width="246" height="103.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </webView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="webview" destination="qgb-uO-plr" id="1cH-tD-QSE"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="yJc-ya-agP" id="haq-vc-hHU"/>
+                            <outlet property="delegate" destination="yJc-ya-agP" id="LcN-jc-No2"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="User" id="0HR-2L-ufs"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hRN-ke-cPN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1377" y="5"/>
+        </scene>
+        <!--Chat-->
+        <scene sceneID="nWJ-oi-Mca">
+            <objects>
+                <navigationController id="zgf-F6-Zvq" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Chat" id="uZZ-6x-HiO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9hJ-KO-iTN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="L6h-sq-TzN" kind="relationship" relationship="rootViewController" id="YXP-sU-rZQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R37-PF-8GW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="538" y="-6"/>
         </scene>
     </scenes>
     <resources>
