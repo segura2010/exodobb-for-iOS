@@ -141,7 +141,7 @@ class ChatTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         // "modules.chats.get",{"touid":"498","since":"recent"}
         
-        var MessagesVC = segue.destinationViewController as! UserChatMessageTableViewController
+        var MessagesVC = segue.destinationViewController as! UserChatViewController
         if let indexPath = self.tableView.indexPathForCell(sender as! UITableViewCell){
             if(indexPath.row < chats.count){
                 let c = chats[indexPath.row]

@@ -366,6 +366,7 @@
                                 <connections>
                                     <outlet property="picture" destination="lKv-kI-WiK" id="ycC-VS-NJq"/>
                                     <outlet property="username" destination="7ZE-wH-FB1" id="mq4-PQ-VOq"/>
+                                    <segue destination="bkX-Ng-ooR" kind="show" id="miz-E8-S6e"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -382,52 +383,53 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <connections>
-                        <segue destination="yJc-ya-agP" kind="show" id="Ayt-nK-dMS"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gvw-xb-Roa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="988" y="5"/>
         </scene>
         <!--User-->
-        <scene sceneID="kVu-zk-oz2">
+        <scene sceneID="vxj-gW-zgJ">
             <objects>
-                <tableViewController storyboardIdentifier="UserChatMessageVC" id="yJc-ya-agP" customClass="UserChatMessageTableViewController" customModule="ExodoBB" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" id="xIG-Fm-0Xn">
+                <viewController storyboardIdentifier="UserChatVC" id="bkX-Ng-ooR" customClass="UserChatViewController" customModule="ExodoBB" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Owd-TC-m2d"/>
+                        <viewControllerLayoutGuide type="bottom" id="wYG-Hi-lQ5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fB4-JS-KKg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserChatMessageCell" rowHeight="120" id="lE4-EK-Ic2" customClass="UserChatMessageCellTableViewCell" customModule="ExodoBB" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="320" height="120"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lE4-EK-Ic2" id="791-76-drW">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="119.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qgb-uO-plr">
-                                            <rect key="frame" x="8" y="8" width="246" height="103.5"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </webView>
-                                    </subviews>
-                                </tableViewCellContentView>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NZc-MI-heA">
+                                <rect key="frame" x="20" y="72" width="231" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tjf-NM-FNg">
+                                <rect key="frame" x="259" y="72" width="36" height="30"/>
+                                <state key="normal" title="Send"/>
                                 <connections>
-                                    <outlet property="webview" destination="qgb-uO-plr" id="1cH-tD-QSE"/>
+                                    <action selector="sendBtnClick:" destination="bkX-Ng-ooR" eventType="touchUpInside" id="4tx-O4-bsC"/>
                                 </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="yJc-ya-agP" id="haq-vc-hHU"/>
-                            <outlet property="delegate" destination="yJc-ya-agP" id="LcN-jc-No2"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="User" id="0HR-2L-ufs"/>
+                            </button>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EVd-Xq-wrV">
+                                <rect key="frame" x="0.0" y="130" width="320" height="330"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="User" id="LXZ-t1-C70"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hRN-ke-cPN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    <connections>
+                        <outlet property="messageTxt" destination="NZc-MI-heA" id="iyh-4w-NwC"/>
+                        <outlet property="navigationBar" destination="LXZ-t1-C70" id="XNb-JT-PDq"/>
+                        <outlet property="webView" destination="EVd-Xq-wrV" id="1gZ-qa-e15"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vL2-Jc-qpt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1377" y="5"/>
+            <point key="canvasLocation" x="1377" y="-6"/>
         </scene>
         <!--Chat-->
         <scene sceneID="nWJ-oi-Mca">

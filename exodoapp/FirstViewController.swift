@@ -138,7 +138,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 {   // Chats received
                     // Get chats view controller, and call update function
                     let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    var MessagesVC = mainStoryboard.instantiateViewControllerWithIdentifier("UserChatMessageVC") as! UserChatMessageTableViewController
+                    var MessagesVC = mainStoryboard.instantiateViewControllerWithIdentifier("UserChatVC") as! UserChatViewController
                     MessagesVC.updateMessages(data)
                 }
                 

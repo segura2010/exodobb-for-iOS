@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D34FA1681BAC6B9C00F79FDD"
-               BuildableName = "exodoapp.app"
+               BuildableName = "ExodoBB.app"
                BlueprintName = "exodoapp"
                ReferencedContainer = "container:exodoapp.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D34FA1681BAC6B9C00F79FDD"
-            BuildableName = "exodoapp.app"
+            BuildableName = "ExodoBB.app"
             BlueprintName = "exodoapp"
             ReferencedContainer = "container:exodoapp.xcodeproj">
          </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D34FA1681BAC6B9C00F79FDD"
-            BuildableName = "exodoapp.app"
+            BuildableName = "ExodoBB.app"
             BlueprintName = "exodoapp"
             ReferencedContainer = "container:exodoapp.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D34FA1681BAC6B9C00F79FDD"
-            BuildableName = "exodoapp.app"
+            BuildableName = "ExodoBB.app"
             BlueprintName = "exodoapp"
             ReferencedContainer = "container:exodoapp.xcodeproj">
          </BuildableReference>

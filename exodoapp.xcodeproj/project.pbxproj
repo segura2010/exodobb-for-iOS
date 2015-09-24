@@ -20,13 +20,12 @@
 		D39AD8D91BB2F8D300A6F749 /* UserChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AD8D81BB2F8D300A6F749 /* UserChatCell.swift */; settings = {ASSET_TAGS = (); }; };
 		D39AD8DB1BB2F90800A6F749 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AD8DA1BB2F90800A6F749 /* User.swift */; settings = {ASSET_TAGS = (); }; };
 		D39AD8DD1BB2FA2300A6F749 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AD8DC1BB2FA2300A6F749 /* ChatTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		D39AD8DF1BB3122200A6F749 /* UserChatMessageCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AD8DE1BB3122200A6F749 /* UserChatMessageCellTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
-		D39AD8E11BB3125400A6F749 /* UserChatMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AD8E01BB3125400A6F749 /* UserChatMessageTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		D3AB3F211BADC3E900B91091 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AB3F201BADC3E900B91091 /* Thread.swift */; settings = {ASSET_TAGS = (); }; };
 		D3AB3F231BADF1FF00B91091 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AB3F221BADF1FF00B91091 /* TopicViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		D3AF71A61BADB96100B33DF7 /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF71A51BADB96100B33DF7 /* ThreadCell.swift */; settings = {ASSET_TAGS = (); }; };
 		D3CE06F31BAC6DD4005EE82D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CE06F21BAC6DD4005EE82D /* libz.tbd */; };
 		D3CE06F51BAC6E01005EE82D /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CE06F41BAC6E01005EE82D /* WebSocket.swift */; settings = {ASSET_TAGS = (); }; };
+		D3D21C681BB3F71E0051EF9C /* UserChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D21C671BB3F71E0051EF9C /* UserChatViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,14 +46,13 @@
 		D39AD8D81BB2F8D300A6F749 /* UserChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChatCell.swift; sourceTree = "<group>"; };
 		D39AD8DA1BB2F90800A6F749 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D39AD8DC1BB2FA2300A6F749 /* ChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
-		D39AD8DE1BB3122200A6F749 /* UserChatMessageCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChatMessageCellTableViewCell.swift; sourceTree = "<group>"; };
-		D39AD8E01BB3125400A6F749 /* UserChatMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChatMessageTableViewController.swift; sourceTree = "<group>"; };
 		D3AB3F201BADC3E900B91091 /* Thread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
 		D3AB3F221BADF1FF00B91091 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		D3AF71A51BADB96100B33DF7 /* ThreadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadCell.swift; sourceTree = "<group>"; };
 		D3CE06F01BAC6DCE005EE82D /* SwiftWebSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftWebSocket.framework; path = "Pods/../build/Debug-iphoneos/SwiftWebSocket.framework"; sourceTree = "<group>"; };
 		D3CE06F21BAC6DD4005EE82D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D3CE06F41BAC6E01005EE82D /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = ../../WebSocket.swift; sourceTree = "<group>"; };
+		D3D21C671BB3F71E0051EF9C /* UserChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChatViewController.swift; sourceTree = "<group>"; };
 		D86FF4C86286D2092713AF2F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -128,8 +126,7 @@
 				D39AD8D81BB2F8D300A6F749 /* UserChatCell.swift */,
 				D39AD8DA1BB2F90800A6F749 /* User.swift */,
 				D39AD8DC1BB2FA2300A6F749 /* ChatTableViewController.swift */,
-				D39AD8DE1BB3122200A6F749 /* UserChatMessageCellTableViewCell.swift */,
-				D39AD8E01BB3125400A6F749 /* UserChatMessageTableViewController.swift */,
+				D3D21C671BB3F71E0051EF9C /* UserChatViewController.swift */,
 			);
 			path = exodoapp;
 			sourceTree = "<group>";
@@ -261,16 +258,15 @@
 				D34FA1711BAC6B9C00F79FDD /* SecondViewController.swift in Sources */,
 				D3AB3F211BADC3E900B91091 /* Thread.swift in Sources */,
 				D3CE06F51BAC6E01005EE82D /* WebSocket.swift in Sources */,
-				D39AD8DF1BB3122200A6F749 /* UserChatMessageCellTableViewCell.swift in Sources */,
 				D3AF71A61BADB96100B33DF7 /* ThreadCell.swift in Sources */,
 				D39780051BAECCCA0016865A /* PostViewController.swift in Sources */,
 				D34FA16D1BAC6B9C00F79FDD /* AppDelegate.swift in Sources */,
 				D34FA16F1BAC6B9C00F79FDD /* FirstViewController.swift in Sources */,
 				D39AD8D91BB2F8D300A6F749 /* UserChatCell.swift in Sources */,
+				D3D21C681BB3F71E0051EF9C /* UserChatViewController.swift in Sources */,
 				D39780031BAEC4530016865A /* Post.swift in Sources */,
 				D3AB3F231BADF1FF00B91091 /* TopicViewController.swift in Sources */,
 				D39780011BAEC43E0016865A /* PostCell.swift in Sources */,
-				D39AD8E11BB3125400A6F749 /* UserChatMessageTableViewController.swift in Sources */,
 				D39AD8DD1BB2FA2300A6F749 /* ChatTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
