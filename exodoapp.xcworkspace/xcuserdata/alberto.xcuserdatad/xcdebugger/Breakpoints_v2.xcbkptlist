@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "exodoapp/FirstViewController.swift"
-            timestampString = "464716063.177448"
+            timestampString = "464861640.636216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "initWSEvents()"
             landmarkType = "5">
          </BreakpointContent>
@@ -177,6 +177,54 @@
             endingLineNumber = "19"
             landmarkName = "configureCell(_:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "exodoapp/TopicViewController.swift"
+            timestampString = "464864049.793913"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "tableView(_:editActionsForRowAtIndexPath:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ExodoBB.TopicViewController.tableView (ExodoBB.TopicViewController)(ObjectiveC.UITableView, editActionsForRowAtIndexPath : ObjectiveC.NSIndexPath) -&gt; Swift.Optional&lt;Swift.Array&lt;ObjectiveC.UITableViewRowAction&gt;&gt;"
+                  moduleName = "ExodoBB"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alberto/Desktop/Swift%20Prueba/exodoapp/exodoapp/TopicViewController.swift"
+                  timestampString = "464863802.714091"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "191">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ExodoBB.TopicViewController.(tableView (ExodoBB.TopicViewController) -&gt; (ObjectiveC.UITableView, editActionsForRowAtIndexPath : ObjectiveC.NSIndexPath) -&gt; Swift.Optional&lt;Swift.Array&lt;ObjectiveC.UITableViewRowAction&gt;&gt;).(closure #1)"
+                  moduleName = "ExodoBB"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alberto/Desktop/Swift%20Prueba/exodoapp/exodoapp/TopicViewController.swift"
+                  timestampString = "464863802.714496"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "708">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -32,6 +32,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        
         indicator.hidesWhenStopped = true
         
         cookie = SecondViewController.getCookie()

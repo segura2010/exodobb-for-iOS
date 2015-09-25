@@ -68,6 +68,41 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
             return UITableViewCell()
         }
     }
+    // Cell custom actions!!
+    @available(iOS 8.0, *)
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        
+        var favAction = UITableViewRowAction(style: .Normal, title: "FAV") { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+            let post = self.posts[indexPath.row]
+            let pid = post.pid
+            let tid = post.tid
+            //print("FAV \(pid)")
+            self.favPost(pid, tid: tid)
+        }
+        favAction.backgroundColor = UIColor.orangeColor()
+        
+        var repMoreAction = UITableViewRowAction(style: .Normal, title: "+1") { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+            let post = self.posts[indexPath.row]
+            let pid = post.pid
+            let tid = post.tid
+            //print("+1 \(pid)")
+            self.upvotePost(pid, tid: tid)
+        }
+        repMoreAction.backgroundColor = UIColor.greenColor()
+        
+        var repMinusAction = UITableViewRowAction(style: .Normal, title: "-1") { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+            let post = self.posts[indexPath.row]
+            let pid = post.pid
+            let tid = post.tid
+            //print("-1 \(pid)")
+            self.downvotePost(pid, tid: tid)
+        }
+        repMinusAction.backgroundColor = UIColor.redColor()
+        
+        return [repMinusAction, repMoreAction, favAction]
+        
+    }
     
     
     
@@ -133,6 +168,20 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
             print("Error:\n \(error)")
             return
         }
+    }
+    
+    func favPost(pid: Int, tid:Int){
+        let msg = "\(messageNum)[\"posts.favourite\",{\"pid\":\"\(pid)\",\"room_id\":\"topic_\(tid)\"}]"
+        ws.send(msg)
+    }
+    
+    func upvotePost(pid: Int, tid:Int){
+        let msg = "\(messageNum)[\"posts.upvote\",{\"pid\":\"\(pid)\",\"room_id\":\"topic_\(tid)\"}]"
+        ws.send(msg)
+    }
+    func downvotePost(pid: Int, tid:Int){
+        let msg = "\(messageNum)[\"posts.downvote\",{\"pid\":\"\(pid)\",\"room_id\":\"topic_\(tid)\"}]"
+        ws.send(msg)
     }
     
 

@@ -17,6 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        var addStatusBar = UIView()
+        addStatusBar.frame = CGRectMake(0, 0, 320, 20);
+        addStatusBar.backgroundColor = UIColor.orangeColor()
+        self.window?.rootViewController?.view .addSubview(addStatusBar)
+        
+        
         return true
     }
 
