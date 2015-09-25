@@ -17,6 +17,7 @@ class Post {
     var username: String!
     var userslug: String!
     var picture: String!
+    var favourited: Bool!
     
     init(threadDic: Dictionary<String, AnyObject>)
     {
@@ -24,6 +25,7 @@ class Post {
         self.tid = threadDic["tid"] as? Int
         self.pid = threadDic["pid"] as? Int
         self.relativeTime = threadDic["relativeTime"] as? String
+        self.favourited = threadDic["favourited"] as? Bool
         
         //let kk = threadDic as! NSDictionary
         //var kk2 = kk!["user"]! as? Dictionary<String, AnyObject>

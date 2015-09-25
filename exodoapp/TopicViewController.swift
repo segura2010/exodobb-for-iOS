@@ -72,13 +72,23 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @available(iOS 8.0, *)
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
-        
-        var favAction = UITableViewRowAction(style: .Normal, title: "FAV") { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
-            let post = self.posts[indexPath.row]
-            let pid = post.pid
-            let tid = post.tid
-            //print("FAV \(pid)")
-            self.favPost(pid, tid: tid)
+        var favAction: UITableViewRowAction
+        if (self.posts[indexPath.row].favourited == true){
+            favAction = UITableViewRowAction(style: .Normal, title: "UNFAV") { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+                let post = self.posts[indexPath.row]
+                let pid = post.pid
+                let tid = post.tid
+                //print("FAV \(pid)")
+                self.unfavPost(pid, tid: tid)
+            }
+        }else{
+            favAction = UITableViewRowAction(style: .Normal, title: "FAV") { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+                let post = self.posts[indexPath.row]
+                let pid = post.pid
+                let tid = post.tid
+                //print("FAV \(pid)")
+                self.favPost(pid, tid: tid)
+            }
         }
         favAction.backgroundColor = UIColor.orangeColor()
         
@@ -172,6 +182,10 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func favPost(pid: Int, tid:Int){
         let msg = "\(messageNum)[\"posts.favourite\",{\"pid\":\"\(pid)\",\"room_id\":\"topic_\(tid)\"}]"
+        ws.send(msg)
+    }
+    func unfavPost(pid: Int, tid:Int){
+        let msg = "\(messageNum)[\"posts.unfavourite\",{\"pid\":\"\(pid)\",\"room_id\":\"topic_\(tid)\"}]"
         ws.send(msg)
     }
     
