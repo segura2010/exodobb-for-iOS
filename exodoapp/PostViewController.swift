@@ -28,6 +28,8 @@ class PostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // getQuote(post.pid)
+        
         cookie = SecondViewController.getCookie()
         
         var html = "<link rel=\"stylesheet\" type=\"text/css\" href=\"/stylesheet.css\"> \(post.content)"
@@ -50,6 +52,17 @@ class PostViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func getQuote(pid: Int){
+        let msg = "\(messageNum)[\"posts.getRawPost\",\"\(pid)\"]"
+        ws.send(msg)
+    }
+    
+    public func updateQuote(recvData: String){
+        let cleanData = recvData.substringWithRange(Range<String.Index>(start: recvData.startIndex, end: recvData.endIndex.advancedBy(-1)))
+        
+        self.replyTextView.text = cleanData
     }
     
     /*

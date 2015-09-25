@@ -189,7 +189,7 @@
         <!--Post View Controller-->
         <scene sceneID="FFu-Gv-eMt">
             <objects>
-                <viewController id="dv3-tS-eAs" customClass="PostViewController" customModule="ExodoBB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostVC" id="dv3-tS-eAs" customClass="PostViewController" customModule="ExodoBB" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JMi-hB-6hP"/>
                         <viewControllerLayoutGuide type="bottom" id="2Ba-XH-lob"/>

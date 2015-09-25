@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "exodoapp/PostViewController.swift"
-            timestampString = "464520334.999907"
+            timestampString = "464871435.560793"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "PostViewController"
             landmarkType = "3">
          </BreakpointContent>

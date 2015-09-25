@@ -142,6 +142,11 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     var MessagesVC = mainStoryboard.instantiateViewControllerWithIdentifier("UserChatVC") as! UserChatViewController
                     MessagesVC.updateMessages(data)
                 }
+                /* else if(data.hasPrefix("\"")){
+                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    var postVC = mainStoryboard.instantiateViewControllerWithIdentifier("PostVC") as! PostViewController
+                    postVC.updateQuote(data)
+                }*/
                 
             }
         }
