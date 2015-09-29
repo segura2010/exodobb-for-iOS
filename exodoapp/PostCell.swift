@@ -22,6 +22,7 @@ class PostCell: UITableViewCell {
         self.sizeToFit()
         */
         
+        /*
         let encodedData = p.content.dataUsingEncoding(NSUTF8StringEncoding)!
         let attributedOptions : [String: AnyObject] = [
             NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
@@ -33,6 +34,10 @@ class PostCell: UITableViewCell {
         } catch {
             postContentView.text = p.content
         }
+        */
+
+        postContentView.text = p.content
+
         //var htmlContent = NSAttributedString(string: p.content, attributes:)
         infoLbl.text = p.username + " - " + p.relativeTime
     }

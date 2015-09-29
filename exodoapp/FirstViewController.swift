@@ -96,7 +96,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         ws.event.message = { message in
             if let text = message as? String {
-                print("recv: \(text)")
+                //print("recv: \(text)")
                 
                 var ierror: NSError?
                 // "^([0-9]+\\[null,)"

@@ -117,7 +117,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     func loadPosts(page: Int){
-        print(page)
+        //print(page)
         actPage = page
         pageTxt.text = actPage as? String
         

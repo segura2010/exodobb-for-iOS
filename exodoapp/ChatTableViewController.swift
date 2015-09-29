@@ -62,7 +62,7 @@ class ChatTableViewController: UITableViewController {
     
     public func updateChats(recvData:String)
     {
-        print("UPDATECHATS: \(recvData)")
+        //print("UPDATECHATS: \(recvData)")
         // I have to delete last char ]"
         let cleanData = recvData.substringWithRange(Range<String.Index>(start: recvData.startIndex, end: recvData.endIndex.advancedBy(-1)))
         
@@ -75,6 +75,7 @@ class ChatTableViewController: UITableViewController {
             // let nextStart = (json!["nextStart"] as? Int)!
             let users = json!["users"] as? [Dictionary<String, AnyObject>]
             
+            chats = [User]()
             for u in users!{
                 //print(t["tid"])
                 let user = User(user: u)
@@ -94,6 +95,7 @@ class ChatTableViewController: UITableViewController {
     
 
     @IBAction func refreshBtnClick(sender: AnyObject) {
+        self.tableView.reloadData()
         requestChats()
     }
     
