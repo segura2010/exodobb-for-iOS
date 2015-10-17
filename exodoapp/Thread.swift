@@ -18,6 +18,9 @@ class Thread {
     var lastPostDate: String!
     var lastPostUser: String!
     var unread: Bool!
+    var postCount: Int!
+    var viewCount: Int!
+    var locked: Bool!
     
     init(threadDic: Dictionary<String, AnyObject>)
     {
@@ -29,6 +32,11 @@ class Thread {
         self.lastPostDate = threadDic["lastposttimeISO"] as? String
         self.unread = threadDic["unread"] as? Bool
         
+        self.postCount = threadDic["postcount"] as? Int
+        self.viewCount = threadDic["viewcount"] as? Int
+        
+        self.locked = threadDic["locked"] as? Bool
+                
         //let kk = threadDic as! NSDictionary
         //var kk2 = kk!["user"]! as? Dictionary<String, AnyObject>
         

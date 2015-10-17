@@ -12,6 +12,8 @@ class PostCell: UITableViewCell {
     
     @IBOutlet weak var infoLbl: UILabel!
     @IBOutlet weak var postContentView: UITextView!
+    @IBOutlet weak var votes: UILabel!
+    @IBOutlet weak var reputation: UILabel!
 
     
     func configureCell(p:Post)
@@ -40,6 +42,10 @@ class PostCell: UITableViewCell {
 
         //var htmlContent = NSAttributedString(string: p.content, attributes:)
         infoLbl.text = p.username + " - " + p.relativeTime
+        
+        votes.text = "\(p.votes)"
+        reputation.text = "\(p.reputation)"
+        
     }
     
     

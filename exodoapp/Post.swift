@@ -18,6 +18,8 @@ class Post {
     var userslug: String!
     var picture: String!
     var favourited: Bool!
+    var votes: Int!
+    var reputation: Int!
     
     init(threadDic: Dictionary<String, AnyObject>)
     {
@@ -26,6 +28,10 @@ class Post {
         self.pid = threadDic["pid"] as? Int
         self.relativeTime = threadDic["relativeTime"] as? String
         self.favourited = threadDic["favourited"] as? Bool
+        
+        // Votes and reputation are in inverse order.. XD
+        self.votes = threadDic["reputation"] as? Int
+        self.reputation = threadDic["votes"] as? Int
         
         //let kk = threadDic as! NSDictionary
         //var kk2 = kk!["user"]! as? Dictionary<String, AnyObject>

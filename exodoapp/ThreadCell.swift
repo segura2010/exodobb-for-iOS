@@ -12,6 +12,8 @@ class ThreadCell: UITableViewCell {
     
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var infoLbl: UILabel!
+    @IBOutlet weak var viewsField: UITextField!
+    @IBOutlet weak var repliesField: UITextField!
     
     
     func configureCell(topic:Thread)
@@ -26,10 +28,16 @@ class ThreadCell: UITableViewCell {
         if (topic.unread != false){
             titleLbl.textColor = UIColor.blueColor()
         }
+        else if(topic.locked != false){
+            titleLbl.textColor = UIColor.redColor()
+        }
         else{
             titleLbl.textColor = UIColor.blackColor()
         }
         infoLbl.text = topic.lastPostUser + " - " + topic.lastPostDate
+        
+        repliesField.text = "\(topic.postCount)"
+        viewsField.text = "\(topic.viewCount)"
     }
 
     override func awakeFromNib() {
