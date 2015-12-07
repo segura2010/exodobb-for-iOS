@@ -20,9 +20,22 @@ class UserChatCell: UITableViewCell {
         
         if let p = u.picture{
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)){
-                if let picData = NSData(contentsOfURL: NSURL(string: p)!){
-                    dispatch_async(dispatch_get_main_queue()){
-                        self.picture.image = UIImage(data: picData)
+                if p.lowercaseString.rangeOfString("http") != nil
+                {
+                    if let picData = NSData(contentsOfURL: NSURL(string: p)!){
+                        dispatch_async(dispatch_get_main_queue()){
+                            self.picture.image = UIImage(data: picData)
+                        }
+                    }
+                }
+                else
+                {
+                    let pp = "http://exo.do\(p)".stringByReplacingOccurrencesOfString(" ", withString: "%20", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                    print(pp)
+                    if let picData = NSData(contentsOfURL: NSURL(string: pp)!){
+                        dispatch_async(dispatch_get_main_queue()){
+                            self.picture.image = UIImage(data: picData)
+                        }
                     }
                 }
             }
