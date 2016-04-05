@@ -1277,15 +1277,15 @@ private struct z_stream {
     var reserved : CUnsignedLong = 0
 }
 
-@asmname("zlibVersion") private func zlibVersion() -> COpaquePointer
-@asmname("deflateInit2_") private func deflateInit2(strm : UnsafeMutablePointer<Void>, level : CInt, method : CInt, windowBits : CInt, memLevel : CInt, strategy : CInt, version : COpaquePointer, stream_size : CInt) -> CInt
-@asmname("deflateInit_") private func deflateInit(strm : UnsafeMutablePointer<Void>, level : CInt, version : COpaquePointer, stream_size : CInt) -> CInt
-@asmname("deflateEnd") private func deflateEnd(strm : UnsafeMutablePointer<Void>) -> CInt
-@asmname("deflate") private func deflate(strm : UnsafeMutablePointer<Void>, flush : CInt) -> CInt
-@asmname("inflateInit2_") private func inflateInit2(strm : UnsafeMutablePointer<Void>, windowBits : CInt, version : COpaquePointer, stream_size : CInt) -> CInt
-@asmname("inflateInit_") private func inflateInit(strm : UnsafeMutablePointer<Void>, version : COpaquePointer, stream_size : CInt) -> CInt
-@asmname("inflate") private func inflateG(strm : UnsafeMutablePointer<Void>, flush : CInt) -> CInt
-@asmname("inflateEnd") private func inflateEndG(strm : UnsafeMutablePointer<Void>) -> CInt
+@_silgen_name("zlibVersion") private func zlibVersion() -> COpaquePointer
+@_silgen_name("deflateInit2_") private func deflateInit2(strm : UnsafeMutablePointer<Void>, level : CInt, method : CInt, windowBits : CInt, memLevel : CInt, strategy : CInt, version : COpaquePointer, stream_size : CInt) -> CInt
+@_silgen_name("deflateInit_") private func deflateInit(strm : UnsafeMutablePointer<Void>, level : CInt, version : COpaquePointer, stream_size : CInt) -> CInt
+@_silgen_name("deflateEnd") private func deflateEnd(strm : UnsafeMutablePointer<Void>) -> CInt
+@_silgen_name("deflate") private func deflate(strm : UnsafeMutablePointer<Void>, flush : CInt) -> CInt
+@_silgen_name("inflateInit2_") private func inflateInit2(strm : UnsafeMutablePointer<Void>, windowBits : CInt, version : COpaquePointer, stream_size : CInt) -> CInt
+@_silgen_name("inflateInit_") private func inflateInit(strm : UnsafeMutablePointer<Void>, version : COpaquePointer, stream_size : CInt) -> CInt
+@_silgen_name("inflate") private func inflateG(strm : UnsafeMutablePointer<Void>, flush : CInt) -> CInt
+@_silgen_name("inflateEnd") private func inflateEndG(strm : UnsafeMutablePointer<Void>) -> CInt
 
 private func zerror(res : CInt) -> ErrorType? {
     var err = ""
