@@ -9,7 +9,8 @@
 import UIKit
 //import SwiftWebSocket
 
-var ws = WebSocket("ws://ws.exo.do/socket.io/?EIO=3&transport=websocket")
+let WS_SERVER = "ws://exo.do/socket.io/?EIO=3&transport=websocket"
+var ws = WebSocket(WS_SERVER)
 var messageNum = 421
 
 class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -88,7 +89,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         ws.event.close = { code, reason, clean in
             print("close")
-            ws = WebSocket("ws://ws.exo.do/socket.io/?EIO=3&transport=websocket")
+            ws = WebSocket(WS_SERVER)
             self.initWSEvents()
         }
         ws.event.error = { error in

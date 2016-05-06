@@ -192,6 +192,7 @@ class SecondViewController: UIViewController {
                         if let cookie = res.allHeaderFields["Set-Cookie"]{
                             print(cookie)
                             self.saveCookie(cookie as! String)
+                            exit(0)
                         }
                     }else{
                         //self.usernameTxt.text = "Invalid username/password"
