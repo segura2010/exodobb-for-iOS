@@ -26,7 +26,7 @@ class Post {
         self.content = threadDic["content"] as? String
         self.tid = threadDic["tid"] as? Int
         self.pid = threadDic["pid"] as? Int
-        self.relativeTime = threadDic["relativeTime"] as? String
+        self.relativeTime = threadDic["timestampISO"] as? String
         self.favourited = threadDic["favourited"] as? Bool
         
         // Votes and reputation are in inverse order.. XD

@@ -8,7 +8,7 @@
 
 import UIKit
 
-var chats = [User]()
+var chats = [Room]()
 
 class ChatTableViewController: UITableViewController {
 
@@ -73,14 +73,14 @@ class ChatTableViewController: UITableViewController {
             let json = try NSJSONSerialization.JSONObjectWithData(cleanData.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as? Dictionary<String, AnyObject>
             
             // let nextStart = (json!["nextStart"] as? Int)!
-            let users = json!["users"] as? [Dictionary<String, AnyObject>]
+            let users = json!["rooms"] as? [Dictionary<String, AnyObject>]
             
-            chats = [User]()
+            chats = [Room]()
             for u in users!{
                 //print(t["tid"])
-                let user = User(user: u)
+                let room = Room(room: u)
                 //print(user.username)
-                chats.append(user)
+                chats.append(room)
             }
             
             // Main UI Thread
@@ -147,7 +147,7 @@ class ChatTableViewController: UITableViewController {
         if let indexPath = self.tableView.indexPathForCell(sender as! UITableViewCell){
             if(indexPath.row < chats.count){
                 let c = chats[indexPath.row]
-                MessagesVC.user = c
+                MessagesVC.room = c
             }
         }
         

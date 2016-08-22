@@ -14,7 +14,7 @@ class UserChatCell: UITableViewCell {
     @IBOutlet weak var picture: UIImageView!
     
     
-    func configureCell(u:User)
+    func configureCell(u:Room)
     {
         username.text = u.username
         

@@ -134,7 +134,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                 do{
-                    //print("Response: \(response)")
+                    print("Response: \(response)")
                     let strData = NSString(data: data!, encoding: NSUTF8StringEncoding)
                     //print("Body: \(strData)")
                     let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves) as? NSDictionary
@@ -145,7 +145,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     {
                         
                         if let posts = parseJSON["posts"] as? [Dictionary<String, AnyObject>] {
-                            self.maxPage = parseJSON["pageCount"] as! Int
+                            self.maxPage = parseJSON["pagination"]!["pageCount"] as! Int
                             self.posts = [Post]()
                             for p in posts
                             {

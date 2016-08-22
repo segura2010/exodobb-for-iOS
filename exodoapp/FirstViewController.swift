@@ -9,7 +9,7 @@
 import UIKit
 //import SwiftWebSocket
 
-let WS_SERVER = "ws://exo.do/socket.io/?EIO=3&transport=websocket"
+let WS_SERVER = "wss://exo.do/socket.io/?EIO=3&transport=websocket"
 var ws = WebSocket(WS_SERVER)
 var messageNum = 421
 
@@ -86,8 +86,13 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         */
         ws.event.open = {
             print("opened")
+            self.requestUpdateThreads(0)
+            // Prepare Ping
+            self.Ping()
+            self.requestChats()
         }
         ws.event.close = { code, reason, clean in
+            print(reason)
             print("close")
             ws = WebSocket(WS_SERVER)
             self.initWSEvents()
@@ -97,7 +102,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         ws.event.message = { message in
             if let text = message as? String {
-                //print("recv: \(text)")
+                print("recv: \(text)")
                 
                 var ierror: NSError?
                 // "^([0-9]+\\[null,)"
@@ -129,14 +134,14 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 {   // Posts for topic received
                     self.updateThreads(data)
                 }
-                else if(data.hasPrefix("{\"users\":"))
+                else if(data.hasPrefix("{\"rooms\":"))
                 {   // Chats received
                     // Get chats view controller, and call update function
                     let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     var ChatsVC = mainStoryboard.instantiateViewControllerWithIdentifier("ChatVC") as! ChatTableViewController
                     ChatsVC.updateChats(data)
                 }
-                else if(data.hasPrefix("[{\"_key\""))
+                else if(data.hasPrefix("[{\"content\""))
                 {   // Chats received
                     // Get chats view controller, and call update function
                     let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

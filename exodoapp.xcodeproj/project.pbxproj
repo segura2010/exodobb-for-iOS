@@ -7,30 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D334BD791D6B1B3F009D478A /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334BD781D6B1B3F009D478A /* Room.swift */; };
 		D34FA16D1BAC6B9C00F79FDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34FA16C1BAC6B9C00F79FDD /* AppDelegate.swift */; };
 		D34FA16F1BAC6B9C00F79FDD /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34FA16E1BAC6B9C00F79FDD /* FirstViewController.swift */; };
 		D34FA1711BAC6B9C00F79FDD /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34FA1701BAC6B9C00F79FDD /* SecondViewController.swift */; };
 		D34FA1741BAC6B9C00F79FDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34FA1721BAC6B9C00F79FDD /* Main.storyboard */; };
 		D34FA1761BAC6B9C00F79FDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34FA1751BAC6B9C00F79FDD /* Assets.xcassets */; };
 		D34FA1791BAC6B9C00F79FDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34FA1771BAC6B9C00F79FDD /* LaunchScreen.storyboard */; };
-		D39780011BAEC43E0016865A /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39780001BAEC43E0016865A /* PostCell.swift */; settings = {ASSET_TAGS = (); }; };
-		D39780031BAEC4530016865A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39780021BAEC4530016865A /* Post.swift */; settings = {ASSET_TAGS = (); }; };
-		D39780051BAECCCA0016865A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39780041BAECCCA0016865A /* PostViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		D39780081BAEDE540016865A /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D39780061BAEDE540016865A /* DataModel.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
-		D39AD8D91BB2F8D300A6F749 /* UserChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AD8D81BB2F8D300A6F749 /* UserChatCell.swift */; settings = {ASSET_TAGS = (); }; };
-		D39AD8DB1BB2F90800A6F749 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AD8DA1BB2F90800A6F749 /* User.swift */; settings = {ASSET_TAGS = (); }; };
-		D39AD8DD1BB2FA2300A6F749 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AD8DC1BB2FA2300A6F749 /* ChatTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		D3AB3F211BADC3E900B91091 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AB3F201BADC3E900B91091 /* Thread.swift */; settings = {ASSET_TAGS = (); }; };
-		D3AB3F231BADF1FF00B91091 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AB3F221BADF1FF00B91091 /* TopicViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		D3AF71A61BADB96100B33DF7 /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF71A51BADB96100B33DF7 /* ThreadCell.swift */; settings = {ASSET_TAGS = (); }; };
+		D39780011BAEC43E0016865A /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39780001BAEC43E0016865A /* PostCell.swift */; };
+		D39780031BAEC4530016865A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39780021BAEC4530016865A /* Post.swift */; };
+		D39780051BAECCCA0016865A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39780041BAECCCA0016865A /* PostViewController.swift */; };
+		D39780081BAEDE540016865A /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D39780061BAEDE540016865A /* DataModel.xcdatamodeld */; };
+		D39AD8D91BB2F8D300A6F749 /* UserChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AD8D81BB2F8D300A6F749 /* UserChatCell.swift */; };
+		D39AD8DB1BB2F90800A6F749 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AD8DA1BB2F90800A6F749 /* User.swift */; };
+		D39AD8DD1BB2FA2300A6F749 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39AD8DC1BB2FA2300A6F749 /* ChatTableViewController.swift */; };
+		D3AB3F211BADC3E900B91091 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AB3F201BADC3E900B91091 /* Thread.swift */; };
+		D3AB3F231BADF1FF00B91091 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AB3F221BADF1FF00B91091 /* TopicViewController.swift */; };
+		D3AF71A61BADB96100B33DF7 /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF71A51BADB96100B33DF7 /* ThreadCell.swift */; };
 		D3CE06F31BAC6DD4005EE82D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CE06F21BAC6DD4005EE82D /* libz.tbd */; };
-		D3D21C681BB3F71E0051EF9C /* UserChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D21C671BB3F71E0051EF9C /* UserChatViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		D3DAC0081BD2CA3C004062A5 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAC0071BD2CA3C004062A5 /* WebSocket.swift */; settings = {ASSET_TAGS = (); }; };
+		D3D21C681BB3F71E0051EF9C /* UserChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D21C671BB3F71E0051EF9C /* UserChatViewController.swift */; };
+		D3DAC0081BD2CA3C004062A5 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DAC0071BD2CA3C004062A5 /* WebSocket.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3F49EA4CC21340B6C397BD93 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8A109B7063B5FCDC08A2D7A3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		D334BD781D6B1B3F009D478A /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		D34FA1691BAC6B9C00F79FDD /* ExodoBB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExodoBB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34FA16C1BAC6B9C00F79FDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D34FA16E1BAC6B9C00F79FDD /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				D39AD8DC1BB2FA2300A6F749 /* ChatTableViewController.swift */,
 				D3D21C671BB3F71E0051EF9C /* UserChatViewController.swift */,
 				D3DAC0071BD2CA3C004062A5 /* WebSocket.swift */,
+				D334BD781D6B1B3F009D478A /* Room.swift */,
 			);
 			path = exodoapp;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			files = (
 				D39AD8DB1BB2F90800A6F749 /* User.swift in Sources */,
 				D39780081BAEDE540016865A /* DataModel.xcdatamodeld in Sources */,
+				D334BD791D6B1B3F009D478A /* Room.swift in Sources */,
 				D34FA1711BAC6B9C00F79FDD /* SecondViewController.swift in Sources */,
 				D3AB3F211BADC3E900B91091 /* Thread.swift in Sources */,
 				D3DAC0081BD2CA3C004062A5 /* WebSocket.swift in Sources */,
@@ -313,6 +317,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -358,6 +363,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -381,6 +387,7 @@
 			baseConfigurationReference = 8A109B7063B5FCDC08A2D7A3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -397,6 +404,7 @@
 			baseConfigurationReference = 3F49EA4CC21340B6C397BD93 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
