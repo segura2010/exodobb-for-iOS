@@ -21,6 +21,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet var tableView: UITableView!
     var topics = [Thread]()
+    var isRefreshing = false
     var nextStart = 10
     
     let URL_BASE_API = "http://exo.do/api/"
@@ -28,6 +29,11 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //var messageNum = 421
     //var ws = WebSocket("ws://ws.exo.do/socket.io/?EIO=3&transport=websocket") //"ws://localhost:4567/socket.io/?EIO=3&transport=websocket")
+    
+    
+    // Refresh control
+    var refreshControl = UIRefreshControl()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +48,45 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.dataSource = self
         
         initWSEvents()
+        
+        
+        // Init refresh control
+        refreshControl.tintColor = UIColor.clearColor()
+        refreshControl.backgroundColor = UIColor.clearColor()
+        refreshControl.addTarget(self, action: "refreshControlStateChanged", forControlEvents: .ValueChanged)
+        
+        loadRefreshControl()
+        
+        self.tableView.addSubview(refreshControl)
     }
+    
+    
+    func loadRefreshControl()
+    {
+        var refreshVW = NSBundle.mainBundle().loadNibNamed("RefreshControlView", owner: self, options: nil)
+        
+        var customView = refreshVW[0] as! UIView
+        customView.frame = refreshControl.bounds
+        
+        var customLabel = customView.viewWithTag(1) as! UILabel
+        customLabel.textColor = UIColor.whiteColor()
+        customView.backgroundColor = UIColor.orangeColor()
+        
+        /*
+        UIView.setAnimationsEnabled(true)
+        UIView.animateWithDuration(0.5, delay: 0, options: [.Autoreverse, .CurveLinear, .Repeat], animations: {
+            
+            customView.backgroundColor = UIColor.orangeColor()
+            customView.backgroundColor = UIColor.whiteColor()
+            
+        }, completion: nil)
+         */
+        
+        
+        self.refreshControl.addSubview(customView)
+        
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -102,7 +146,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         ws.event.message = { message in
             if let text = message as? String {
-                print("recv: \(text)")
+                //print("recv: \(text)")
                 
                 var ierror: NSError?
                 // "^([0-9]+\\[null,)"
@@ -128,7 +172,13 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 else if(data.hasPrefix("{\"topics\":"))
                 {   // Topics received
+                    if(self.isRefreshing)
+                    {
+                        self.isRefreshing = false
+                        self.topics = [Thread]()
+                    }
                     self.updateThreads(data)
+                    self.refreshControl.endRefreshing()
                 }
                 else if(data.hasPrefix("{\"privileges\":") || data.hasPrefix("{\"posts\":"))
                 {   // Posts for topic received
@@ -259,6 +309,14 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         dispatch_after(time, dispatch_get_main_queue(), {
             self.Ping()
         })
+    }
+    
+    
+    func refreshControlStateChanged()
+    {
+        print("changed")
+        isRefreshing = true
+        self.requestUpdateThreads(0)
     }
 
 }

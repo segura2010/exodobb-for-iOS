@@ -11,6 +11,8 @@ import UIKit
 var chats = [Room]()
 
 class ChatTableViewController: UITableViewController {
+    
+    var refreshC = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +22,35 @@ class ChatTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        // Init refresh control
+        refreshC.tintColor = UIColor.clearColor()
+        refreshC.backgroundColor = UIColor.clearColor()
+        refreshC.addTarget(self, action: "refreshControlStateChanged", forControlEvents: .ValueChanged)
+        
+        loadRefreshControl()
+        
+        self.tableView.addSubview(refreshC)
+        
     }
+    
+    
+    func loadRefreshControl()
+    {
+        var refreshVW = NSBundle.mainBundle().loadNibNamed("RefreshControlView", owner: self, options: nil)
+        
+        var customView = refreshVW[0] as! UIView
+        customView.frame = refreshC.bounds
+        
+        var customLabel = customView.viewWithTag(1) as! UILabel
+        customLabel.textColor = UIColor.whiteColor()
+        customView.backgroundColor = UIColor.orangeColor()
+        
+        
+        refreshC.addSubview(customView)
+        
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -86,6 +116,7 @@ class ChatTableViewController: UITableViewController {
             // Main UI Thread
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
+                self.refreshC.endRefreshing()
             })
             
         }catch{
@@ -151,6 +182,13 @@ class ChatTableViewController: UITableViewController {
             }
         }
         
+    }
+    
+    
+    func refreshControlStateChanged()
+    {
+        print("changed")
+        self.requestChats()
     }
     
     

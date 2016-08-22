@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D314E87B1D6B636D0072484F /* RefreshControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D314E87A1D6B636D0072484F /* RefreshControlView.xib */; };
 		D334BD791D6B1B3F009D478A /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334BD781D6B1B3F009D478A /* Room.swift */; };
 		D34FA16D1BAC6B9C00F79FDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34FA16C1BAC6B9C00F79FDD /* AppDelegate.swift */; };
 		D34FA16F1BAC6B9C00F79FDD /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34FA16E1BAC6B9C00F79FDD /* FirstViewController.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		3F49EA4CC21340B6C397BD93 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8A109B7063B5FCDC08A2D7A3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		D314E87A1D6B636D0072484F /* RefreshControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshControlView.xib; sourceTree = "<group>"; };
 		D334BD781D6B1B3F009D478A /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		D34FA1691BAC6B9C00F79FDD /* ExodoBB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExodoBB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34FA16C1BAC6B9C00F79FDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				D3D21C671BB3F71E0051EF9C /* UserChatViewController.swift */,
 				D3DAC0071BD2CA3C004062A5 /* WebSocket.swift */,
 				D334BD781D6B1B3F009D478A /* Room.swift */,
+				D314E87A1D6B636D0072484F /* RefreshControlView.xib */,
 			);
 			path = exodoapp;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 			files = (
 				D34FA1791BAC6B9C00F79FDD /* LaunchScreen.storyboard in Resources */,
 				D34FA1761BAC6B9C00F79FDD /* Assets.xcassets in Resources */,
+				D314E87B1D6B636D0072484F /* RefreshControlView.xib in Resources */,
 				D34FA1741BAC6B9C00F79FDD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
