@@ -540,6 +540,8 @@ private class InnerWebSocket: Hashable {
     var _binaryType = WebSocketBinaryType.uInt8Array
     var _readyState = WebSocketReadyState.connecting
     var _networkTimeout = TimeInterval(-1)
+    
+    public var cookie : String
 
 
     var url : String {
@@ -612,6 +614,8 @@ private class InnerWebSocket: Hashable {
         self.inputBytes = UnsafeMutablePointer<UInt8>.allocate(capacity: windowBufferSize)
         self.inputBytesSize = windowBufferSize
         self.delegate = Delegate()
+        self.cookie = SecondViewController.getCookie()
+        //print("COOKIE: \(self.cookie)")
         if stub{
             manager.queue.asyncAfter(deadline: DispatchTime.now() + Double(0) / Double(NSEC_PER_SEC)){
                 _ = self
@@ -983,6 +987,8 @@ private class InnerWebSocket: Hashable {
                 req.setValue("SwiftWebSocket", forHTTPHeaderField: "User-Agent")
         }
         req.setValue("13", forHTTPHeaderField: "Sec-WebSocket-Version")
+        
+        req.setValue(cookie, forHTTPHeaderField: "Cookie")
 
         if req.url == nil || req.url!.host == nil{
             throw WebSocketError.invalidAddress
@@ -1682,6 +1688,7 @@ open class WebSocket: NSObject {
             }
         }
     }
+    
     /// Create a WebSocket object with a deferred connection; the connection is not opened until the .open() method is called.
     public convenience override init(){
         var request = URLRequest(url: URL(string: "http://apple.com")!)

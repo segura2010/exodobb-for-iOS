@@ -120,7 +120,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func initWSEvents(){
         //var messageNum = 421
-        //ws.cookie = "express.sid=s%3ARcOxAKcpMiM9vurdvs29uBIznGJEJv9x.HK0oLZ4yslsdHeEsqfeYn9TdGxdjZgTfoz8Sw%2BkqYvM"
+        //ws.cookie = SecondViewController.getCookie()
         /*
         let send : ()->() = {
             let msg = "\(++messageNum): \(NSDate().description)"
@@ -224,7 +224,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //print("CLEANED!!")
         //print(cleanData)
         
-        do{
+        do{ // TODO: FIX JSONSerialization
             let json = try JSONSerialization.jsonObject(with: cleanData.data(using: String.Encoding.utf8)!, options: .allowFragments) as? Dictionary<String, AnyObject>
             
             nextStart = (json!["nextStart"] as? Int)!

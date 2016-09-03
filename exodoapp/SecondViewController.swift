@@ -141,7 +141,7 @@ class SecondViewController: UIViewController {
         let defaults = UserDefaults.standard
         
         if let cookie = defaults.string(forKey: "cookie") {
-            //print("getCookie() -> \(cookie)")
+            print("getCookie() -> \(cookie)")
             return cookie
         }
         else{
