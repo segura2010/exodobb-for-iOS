@@ -27,7 +27,7 @@ class UserChatViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         showMessagesOnWebView()
     }
 
@@ -44,17 +44,17 @@ class UserChatViewController: UIViewController {
         ws.send(msg)
     }
     
-    public func updateMessages(recvData:String)
+    open func updateMessages(_ recvData:String)
     {
         //print("UPDATEMSGS: \(recvData)")
         // I have to delete last char ]"
-        let cleanData = recvData.substringWithRange(Range<String.Index>(start: recvData.startIndex, end: recvData.endIndex.advancedBy(-1)))
+        let cleanData = recvData.substring(with: (recvData.startIndex ..< recvData.characters.index(recvData.endIndex, offsetBy: -1)))
         
         //print("CLEANED!!")
         //print(cleanData)
         
         do{
-            let json = try NSJSONSerialization.JSONObjectWithData(cleanData.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as? [Dictionary<String, AnyObject>]
+            let json = try JSONSerialization.jsonObject(with: cleanData.data(using: String.Encoding.utf8)!, options: .allowFragments) as? [Dictionary<String, AnyObject>]
             
             // let nextStart = (json!["nextStart"] as? Int)!
             //let users = json!["users"] as? [Dictionary<String, AnyObject>]
@@ -64,7 +64,7 @@ class UserChatViewController: UIViewController {
                 //print(t["tid"])
                 let msg = m["content"] as! String
                 //print(msg)
-                messages.insert(msg, atIndex: 0)
+                messages.insert(msg, at: 0)
             }
             
         }catch{
@@ -80,7 +80,7 @@ class UserChatViewController: UIViewController {
             html = "\(html) <hr> \(m)"
         }
         
-        self.webView.loadHTMLString(html, baseURL: NSURL(string: "http://exo.do/")!)
+        self.webView.loadHTMLString(html, baseURL: URL(string: "http://exo.do/")!)
     }
     
     
@@ -94,7 +94,7 @@ class UserChatViewController: UIViewController {
         ws.send(msg)
     }
     
-    @IBAction func sendBtnClick(sender: AnyObject) {
+    @IBAction func sendBtnClick(_ sender: AnyObject) {
         sendMessage()
     }
 

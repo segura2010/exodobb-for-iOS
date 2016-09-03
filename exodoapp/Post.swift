@@ -37,9 +37,9 @@ class Post {
         //var kk2 = kk!["user"]! as? Dictionary<String, AnyObject>
         
         if let user = threadDic["user"] as? NSDictionary{
-            self.username = user.objectForKey("username") as! String
-            self.userslug = user.objectForKey("userslug") as! String
-            self.picture = user.objectForKey("picture") as! String
+            self.username = user.object(forKey: "username") as! String
+            self.userslug = user.object(forKey: "userslug") as! String
+            self.picture = user.object(forKey: "picture") as! String
         }
         else{
             self.username = ""

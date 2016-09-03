@@ -41,10 +41,10 @@ class Thread {
         //var kk2 = kk!["user"]! as? Dictionary<String, AnyObject>
         
         if let teaser = threadDic["teaser"] as? NSDictionary{
-            self.lastPostUser = teaser.objectForKey("user")?.objectForKey("username") as! String
+            self.lastPostUser = (teaser.object(forKey: "user") as AnyObject).object(forKey: "username") as! String
         }
         else if let user = threadDic["user"] as? NSDictionary{
-            self.lastPostUser = user.objectForKey("username") as! String
+            self.lastPostUser = user.object(forKey: "username") as! String
         }
     }
     

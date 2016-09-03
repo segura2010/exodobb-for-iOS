@@ -24,7 +24,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var isRefreshing = false
     var nextStart = 10
     
-    let URL_BASE_API = "http://exo.do/api/"
+    let URL_BASE_API = "https://exo.do/api/"
     var cookie = ""
     
     //var messageNum = 421
@@ -51,9 +51,9 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         
         // Init refresh control
-        refreshControl.tintColor = UIColor.clearColor()
-        refreshControl.backgroundColor = UIColor.clearColor()
-        refreshControl.addTarget(self, action: "refreshControlStateChanged", forControlEvents: .ValueChanged)
+        refreshControl.tintColor = UIColor.clear
+        refreshControl.backgroundColor = UIColor.clear
+        refreshControl.addTarget(self, action: #selector(FirstViewController.refreshControlStateChanged), for: .valueChanged)
         
         loadRefreshControl()
         
@@ -63,14 +63,14 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func loadRefreshControl()
     {
-        var refreshVW = NSBundle.mainBundle().loadNibNamed("RefreshControlView", owner: self, options: nil)
+        var refreshVW = Bundle.main.loadNibNamed("RefreshControlView", owner: self, options: nil)
         
-        var customView = refreshVW[0] as! UIView
+        let customView = refreshVW?[0] as! UIView
         customView.frame = refreshControl.bounds
         
-        var customLabel = customView.viewWithTag(1) as! UILabel
-        customLabel.textColor = UIColor.whiteColor()
-        customView.backgroundColor = UIColor.orangeColor()
+        let customLabel = customView.viewWithTag(1) as! UILabel
+        customLabel.textColor = UIColor.white
+        customView.backgroundColor = UIColor.orange
         
         /*
         UIView.setAnimationsEnabled(true)
@@ -95,19 +95,19 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     
     // TableView Delegate Functions
-    func tableView(tableView:UITableView, numberOfRowsInSection section:Int) -> Int
+    func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int
     {
         return topics.count
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let cell = tableView.dequeueReusableCellWithIdentifier("TopicCell", forIndexPath: indexPath) as? ThreadCell{
-            let topic = topics[indexPath.row]
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "TopicCell", for: indexPath) as? ThreadCell{
+            let topic = topics[(indexPath as NSIndexPath).row]
             cell.configureCell(topic)
             return cell
         }
@@ -152,8 +152,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 // "^([0-9]+\\[null,)"
                 var data = ""
                 do{
-                    var regex = try NSRegularExpression(pattern: "^([0-9]+\\[null,)", options: NSRegularExpressionOptions.CaseInsensitive)
-                    data = regex.stringByReplacingMatchesInString(text, options: NSMatchingOptions.Anchored, range: NSMakeRange(0, text.characters.count), withTemplate: "")
+                    var regex = try NSRegularExpression(pattern: "^([0-9]+\\[null,)", options: NSRegularExpression.Options.caseInsensitive)
+                    data = regex.stringByReplacingMatches(in: text, options: NSRegularExpression.MatchingOptions.anchored, range: NSMakeRange(0, text.characters.count), withTemplate: "")
                     
                 }catch{}
                 
@@ -188,14 +188,14 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 {   // Chats received
                     // Get chats view controller, and call update function
                     let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    var ChatsVC = mainStoryboard.instantiateViewControllerWithIdentifier("ChatVC") as! ChatTableViewController
+                    var ChatsVC = mainStoryboard.instantiateViewController(withIdentifier: "ChatVC") as! ChatTableViewController
                     ChatsVC.updateChats(data)
                 }
                 else if(data.hasPrefix("[{\"content\""))
                 {   // Chats received
                     // Get chats view controller, and call update function
                     let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    var MessagesVC = mainStoryboard.instantiateViewControllerWithIdentifier("UserChatVC") as! UserChatViewController
+                    var MessagesVC = mainStoryboard.instantiateViewController(withIdentifier: "UserChatVC") as! UserChatViewController
                     MessagesVC.updateMessages(data)
                 }
                 /* else if(data.hasPrefix("\"")){
@@ -209,23 +209,23 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    func requestUpdateThreads(start:Int)
+    func requestUpdateThreads(_ start:Int)
     {
         self.indicator.startAnimating()
         let msg = "\(messageNum)[\"topics.loadMoreFromSet\",{\"after\":\"\(start)\",\"set\":\"topics:recent\"}]"
         ws.send(msg)
     }
     
-    func updateThreads(recvData:String)
+    func updateThreads(_ recvData:String)
     {
         // I have to delete: 432[null,{\"topics\":"
-        let cleanData = recvData.substringWithRange(Range<String.Index>(start: recvData.startIndex, end: recvData.endIndex.advancedBy(-1)))
+        let cleanData = recvData.substring(with: (recvData.startIndex ..< recvData.characters.index(recvData.endIndex, offsetBy: -1)))
         
         //print("CLEANED!!")
         //print(cleanData)
         
         do{
-            let json = try NSJSONSerialization.JSONObjectWithData(cleanData.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as? Dictionary<String, AnyObject>
+            let json = try JSONSerialization.jsonObject(with: cleanData.data(using: String.Encoding.utf8)!, options: .allowFragments) as? Dictionary<String, AnyObject>
             
             nextStart = (json!["nextStart"] as? Int)!
             let topics = json!["topics"] as? [Dictionary<String, AnyObject>]
@@ -238,7 +238,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
             // Main UI Thread
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 self.tableView.reloadData()
                 self.indicator.stopAnimating()
             })
@@ -248,7 +248,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    func markAsRead(id:Int)
+    func markAsRead(_ id:Int)
     {
         let msg = "\(messageNum)[\"topics.markAsRead\",[\(id)]]"
         ws.send(msg)
@@ -256,17 +256,17 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     // Buttons Actions
-    @IBAction func refreshBtnClick(sender: AnyObject) {
+    @IBAction func refreshBtnClick(_ sender: AnyObject) {
         topics = [Thread]()
         requestUpdateThreads(0)
     }
     
-    @IBAction func loadMoreBtnClick(sender: AnyObject) {
+    @IBAction func loadMoreBtnClick(_ sender: AnyObject) {
         self.indicator.startAnimating()
         requestUpdateThreads(nextStart)
     }
     
-    @IBAction func readAllBtnClick(sender: AnyObject) {
+    @IBAction func readAllBtnClick(_ sender: AnyObject) {
         indicator.startAnimating()
         let msg = "\(messageNum)[\"topics.markAllRead\"]"
         ws.send(msg)
@@ -276,14 +276,14 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // Table details
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        var topicView = segue.destinationViewController as! TopicViewController
-        if let indexPath = self.tableView.indexPathForCell(sender as! UITableViewCell){
-            if(indexPath.row < topics.count){
-                let topic = topics[indexPath.row]
+        let topicView = segue.destination as! TopicViewController
+        if let indexPath = self.tableView.indexPath(for: sender as! UITableViewCell){
+            if((indexPath as NSIndexPath).row < topics.count){
+                let topic = topics[(indexPath as NSIndexPath).row]
                 topicView.topic = topic
                 topicView.cookie = self.cookie
                 markAsRead(topic.tid)
@@ -305,8 +305,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //print("Ping..")
         ws.send("2") // Send ping..
         var delta: Int64 = 10 * Int64(NSEC_PER_SEC)
-        var time = dispatch_time(DISPATCH_TIME_NOW, delta)
-        dispatch_after(time, dispatch_get_main_queue(), {
+        var time = DispatchTime.now() + Double(delta) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: time, execute: {
             self.Ping()
         })
     }

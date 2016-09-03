@@ -16,7 +16,7 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var reputation: UILabel!
 
     
-    func configureCell(p:Post)
+    func configureCell(_ p:Post)
     {
         /*
         titleLbl.sizeToFit()
@@ -54,7 +54,7 @@ class PostCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

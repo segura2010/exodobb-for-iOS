@@ -16,7 +16,7 @@ class ThreadCell: UITableViewCell {
     @IBOutlet weak var repliesField: UITextField!
     
     
-    func configureCell(topic:Thread)
+    func configureCell(_ topic:Thread)
     {
         /*
         titleLbl.sizeToFit()
@@ -26,13 +26,13 @@ class ThreadCell: UITableViewCell {
         
         titleLbl.text = topic.title
         if (topic.unread != false){
-            titleLbl.textColor = UIColor.blueColor()
+            titleLbl.textColor = UIColor.blue
         }
         else if(topic.locked != false){
-            titleLbl.textColor = UIColor.redColor()
+            titleLbl.textColor = UIColor.red
         }
         else{
-            titleLbl.textColor = UIColor.blackColor()
+            titleLbl.textColor = UIColor.black
         }
         infoLbl.text = topic.lastPostUser + " - " + topic.lastPostDate
         
@@ -45,7 +45,7 @@ class ThreadCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

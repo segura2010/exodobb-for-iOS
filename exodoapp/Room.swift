@@ -27,8 +27,8 @@ class Room{
         }
         
         rid = room["roomId"] as! String
-        picture = room["users"]![0]["picture"] as! String
-        status = room["users"]![0]["status"] as! String
+        picture = (room["users"] as! [AnyObject])[0]["picture"] as! String
+        status = (room["users"] as! [AnyObject])[0]["status"] as! String
     }
     
 }

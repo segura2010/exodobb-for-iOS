@@ -24,9 +24,9 @@ class ChatTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         // Init refresh control
-        refreshC.tintColor = UIColor.clearColor()
-        refreshC.backgroundColor = UIColor.clearColor()
-        refreshC.addTarget(self, action: "refreshControlStateChanged", forControlEvents: .ValueChanged)
+        refreshC.tintColor = UIColor.clear
+        refreshC.backgroundColor = UIColor.clear
+        refreshC.addTarget(self, action: #selector(ChatTableViewController.refreshControlStateChanged), for: .valueChanged)
         
         loadRefreshControl()
         
@@ -37,14 +37,14 @@ class ChatTableViewController: UITableViewController {
     
     func loadRefreshControl()
     {
-        var refreshVW = NSBundle.mainBundle().loadNibNamed("RefreshControlView", owner: self, options: nil)
+        var refreshVW = Bundle.main.loadNibNamed("RefreshControlView", owner: self, options: nil)
         
-        var customView = refreshVW[0] as! UIView
+        let customView = refreshVW?[0] as! UIView
         customView.frame = refreshC.bounds
         
-        var customLabel = customView.viewWithTag(1) as! UILabel
-        customLabel.textColor = UIColor.whiteColor()
-        customView.backgroundColor = UIColor.orangeColor()
+        let customLabel = customView.viewWithTag(1) as! UILabel
+        customLabel.textColor = UIColor.white
+        customView.backgroundColor = UIColor.orange
         
         
         refreshC.addSubview(customView)
@@ -59,20 +59,20 @@ class ChatTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return chats.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier("UserChatCell", forIndexPath: indexPath) as? UserChatCell{
-            let c = chats[indexPath.row]
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "UserChatCell", for: indexPath) as? UserChatCell{
+            let c = chats[(indexPath as NSIndexPath).row]
             cell.configureCell(c)
             return cell
         }
@@ -90,17 +90,17 @@ class ChatTableViewController: UITableViewController {
         ws.send(msg)
     }
     
-    public func updateChats(recvData:String)
+    open func updateChats(_ recvData:String)
     {
         //print("UPDATECHATS: \(recvData)")
         // I have to delete last char ]"
-        let cleanData = recvData.substringWithRange(Range<String.Index>(start: recvData.startIndex, end: recvData.endIndex.advancedBy(-1)))
+        let cleanData = recvData.substring(with: (recvData.startIndex ..< recvData.characters.index(recvData.endIndex, offsetBy: -1)))
         
         //print("CLEANED!!")
         //print(cleanData)
         
         do{
-            let json = try NSJSONSerialization.JSONObjectWithData(cleanData.dataUsingEncoding(NSUTF8StringEncoding)!, options: .AllowFragments) as? Dictionary<String, AnyObject>
+            let json = try JSONSerialization.jsonObject(with: cleanData.data(using: String.Encoding.utf8)!, options: .allowFragments) as? Dictionary<String, AnyObject>
             
             // let nextStart = (json!["nextStart"] as? Int)!
             let users = json!["rooms"] as? [Dictionary<String, AnyObject>]
@@ -114,7 +114,7 @@ class ChatTableViewController: UITableViewController {
             }
             
             // Main UI Thread
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 self.tableView.reloadData()
                 self.refreshC.endRefreshing()
             })
@@ -125,7 +125,7 @@ class ChatTableViewController: UITableViewController {
     }
     
 
-    @IBAction func refreshBtnClick(sender: AnyObject) {
+    @IBAction func refreshBtnClick(_ sender: AnyObject) {
         self.tableView.reloadData()
         requestChats()
     }
@@ -169,15 +169,15 @@ class ChatTableViewController: UITableViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         // "modules.chats.get",{"touid":"498","since":"recent"}
         
-        var MessagesVC = segue.destinationViewController as! UserChatViewController
-        if let indexPath = self.tableView.indexPathForCell(sender as! UITableViewCell){
-            if(indexPath.row < chats.count){
-                let c = chats[indexPath.row]
+        let MessagesVC = segue.destination as! UserChatViewController
+        if let indexPath = self.tableView.indexPath(for: sender as! UITableViewCell){
+            if((indexPath as NSIndexPath).row < chats.count){
+                let c = chats[(indexPath as NSIndexPath).row]
                 MessagesVC.room = c
             }
         }

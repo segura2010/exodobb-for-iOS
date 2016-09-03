@@ -32,13 +32,13 @@ class PostViewController: UIViewController {
         
         cookie = SecondViewController.getCookie()
         
-        var html = "<link rel=\"stylesheet\" type=\"text/css\" href=\"/stylesheet.css\"> \(post.content)"
+        let html = "<link rel=\"stylesheet\" type=\"text/css\" href=\"/stylesheet.css\"> \(post.content)"
         
-        webView.loadHTMLString(html, baseURL:NSURL(string: "http://exo.do/"))
+        webView.loadHTMLString(html, baseURL:URL(string: "http://exo.do/"))
         
         replyTextView.text = "@\(post.userslug) "
         
-        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PostViewController.DismissKeyboard))
         view.addGestureRecognizer(tap)
         
         // Do any additional setup after loading the view.
@@ -54,13 +54,13 @@ class PostViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func getQuote(pid: Int){
+    func getQuote(_ pid: Int){
         let msg = "\(messageNum)[\"posts.getRawPost\",\"\(pid)\"]"
         ws.send(msg)
     }
     
-    public func updateQuote(recvData: String){
-        let cleanData = recvData.substringWithRange(Range<String.Index>(start: recvData.startIndex, end: recvData.endIndex.advancedBy(-1)))
+    open func updateQuote(_ recvData: String){
+        let cleanData = recvData.substring(with: (recvData.startIndex ..< recvData.characters.index(recvData.endIndex, offsetBy: -1)))
         
         self.replyTextView.text = cleanData
     }
@@ -117,25 +117,25 @@ class PostViewController: UIViewController {
     
     
     
-    @IBAction func replyBtnClick(sender: AnyObject) {
-        var refreshAlert = UIAlertController(title: "Sure?", message: "Send reply?", preferredStyle: UIAlertControllerStyle.Alert)
+    @IBAction func replyBtnClick(_ sender: AnyObject) {
+        var refreshAlert = UIAlertController(title: "Sure?", message: "Send reply?", preferredStyle: UIAlertControllerStyle.alert)
         
-        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
             print("Handle Ok logic here")
             let msg = "\(messageNum)[\"posts.reply\",{\"tid\":\(self.post.tid),\"content\":\"\(self.replyTextView.text)\",\"lock\":false}]"
             print(msg)
             ws.send(msg)
         }))
         
-        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action: UIAlertAction!) in
             print("Handle Cancel Logic here")
         }))
         
-        presentViewController(refreshAlert, animated: true, completion: nil)
+        present(refreshAlert, animated: true, completion: nil)
     }
     
-    @IBAction func closeBtnClick(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion:nil)
+    @IBAction func closeBtnClick(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion:nil)
     }
     
     
@@ -144,8 +144,8 @@ class PostViewController: UIViewController {
         print("Ping from PostView..")
         ws.send("2") // Send ping..
         var delta: Int64 = 10 * Int64(NSEC_PER_SEC)
-        var time = dispatch_time(DISPATCH_TIME_NOW, delta)
-        dispatch_after(time, dispatch_get_main_queue(), {
+        var time = DispatchTime.now() + Double(delta) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: time, execute: {
             self.Ping()
         })
     }

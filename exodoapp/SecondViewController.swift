@@ -11,7 +11,7 @@ import CoreData
 
 class SecondViewController: UIViewController {
     
-    let LOGIN_URL = "http://exo.do/login"
+    let LOGIN_URL = "https://exo.do/login"
     
     @IBOutlet var usernameTxt: UITextField!
     
@@ -28,7 +28,7 @@ class SecondViewController: UIViewController {
         
         var cookie = SecondViewController.getCookie()
         
-        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SecondViewController.DismissKeyboard))
         view.addGestureRecognizer(tap)
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -44,106 +44,29 @@ class SecondViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    func saveCookie(name: String) {
-        //1
-        let appDelegate =
-        UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        let managedContext: NSManagedObjectContext = appDelegate.managedObjectContext!
-        
-        //2
-        let entity =  NSEntityDescription.entityForName("User", inManagedObjectContext: managedContext)
-        
-        let user = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
-        
-        //3
-        user.setValue(name, forKey: "cookie")
-        
-        //4
-        do{
-            try managedContext.save()
-        }catch{
-            print("Could not save..")
-        }  
-        //5
-        //people.append(person)
-        SecondViewController.getCookie()
-    }
-    
-    
-    class func getCookie() -> String
-    {
-        //1
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext!
-        
-        //2
-        let fetchRequest = NSFetchRequest(entityName:"User")
-        
-        var cookie = ""
-        //3
-        do{
-            let fetchedResults = try managedContext.executeFetchRequest(fetchRequest) as? [NSManagedObject]
-            if let results = fetchedResults {
-                //print(results)
-                if results.count > 0 {
-                    cookie = (results.last?.valueForKey("cookie"))! as! String
-                }
-            } else {
-                print("Could not fetch")
-            }
-        }catch{
-            print("Error getCookie")
-        }
-        
-        return cookie
-    }
-
-    
     func getCSRF()
     {
-        let request = NSMutableURLRequest(URL: NSURL(string: LOGIN_URL)!)
-        let session = NSURLSession.sharedSession()
-        request.HTTPMethod = "GET"
+        var request = URLRequest(url: URL(string: LOGIN_URL)!)
+        let session = URLSession.shared
+        request.httpMethod = "GET"
         
         var csrf = ""
         
         do {
-            //request.HTTPBody = params.dataUsingEncoding(NSUTF8StringEncoding)
-            //request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            //request.addValue("application/json", forHTTPHeaderField: "Accept")
             
-            let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            let task = session.dataTask(with: request, completionHandler: {data, response, error -> Void in
                 do{
                     //print("Response: \(response)")
                     //let res = response as! NSHTTPURLResponse
                     //print(data)
                     
-                    
-                    //var rgx = "\\\"csrf_token\\\":\\\".*\\\""
-                    //let regex = try NSRegularExpression(pattern: "[0-9]", options: NSRegularExpressionOptions.CaseInsensitive)
-                    
-                    let nsString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                    let nsString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
                     var text = nsString as! String
                     
-                    //print(text)
-                    //let results = regex.matchesInString(text, options: NSMatchingOptions.Anchored, range: NSMakeRange(0, text.characters.count)) as! [NSTextCheckingResult]
-                    //print("Results: \(results.count)")
-                    /*
-                    for m in results{
-                        let str = nsString!.substringWithRange(m.range)
-                        print(str)
-                    }*/
-                    
-                    // Example: "csrf_token":""
-                    var ini = text.rangeOfString("csrf_token")
-                    //print("Contains: \(ini)")
-                    csrf = text.substringFromIndex((ini?.indices.last?.advancedBy(4))!)
-                    //print(csrf)
-                    var fin = csrf.rangeOfString("\"")
-                    self.csrf = csrf.substringToIndex((fin?.indices.first)!)
+                    var matchs = self.matches(for:"\"csrf_token\":\"([^\"]+)", in: text)
+                    var csrf_str = "\"csrf_token\":\""
+                    //print(matchs[0])
+                    self.csrf = matchs[0].replacingOccurrences(of: csrf_str, with: "") //substring(from: 14 as Int)
                     //print(csrf)
                     self.login()
                     
@@ -160,7 +83,7 @@ class SecondViewController: UIViewController {
         }
     }
     
-    @IBAction func logInBtnClick(sender: AnyObject) {
+    @IBAction func logInBtnClick(_ sender: AnyObject) {
         
         getCSRF()
         //saveCookie(usernameTxt.text!)
@@ -169,29 +92,29 @@ class SecondViewController: UIViewController {
     
     func login()
     {
-        let request = NSMutableURLRequest(URL: NSURL(string: LOGIN_URL)!)
-        let session = NSURLSession.sharedSession()
-        request.HTTPMethod = "POST"
+        var request = URLRequest(url: URL(string: LOGIN_URL)!)
+        let session = URLSession.shared
+        request.httpMethod = "POST"
         
-        let params = "username=\(usernameTxt.text!)&password=\(passwordTxt.text!)&returnTo=http://exo.do/recent"
+        let params = "username=\(usernameTxt.text!)&password=\(passwordTxt.text!)&returnTo=https://exo.do/recent"
         print(self.csrf)
         
         do {
-            request.HTTPBody = params.dataUsingEncoding(NSUTF8StringEncoding)
+            request.httpBody = params.data(using: String.Encoding.utf8)
             request.addValue(self.csrf, forHTTPHeaderField: "x-csrf-token")
             request.addValue("gzip, deflate", forHTTPHeaderField: "Accept-Encoding")
             request.addValue("XMLHttpRequest", forHTTPHeaderField: "X-Requested-With")
             request.addValue("application/x-www-form-urlencoded; charset=UTF-8", forHTTPHeaderField: "Content-Type")
             
-            let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            let task = session.dataTask(with: request, completionHandler: {data, response, error -> Void in
                 do{
                     //print("Response: \(response)")
-                    let res = response as! NSHTTPURLResponse
+                    let res = response as! HTTPURLResponse
                     print(res)
                     if res.statusCode == 200{
                         if let cookie = res.allHeaderFields["Set-Cookie"]{
                             print(cookie)
-                            self.saveCookie(cookie as! String)
+                            self.saveCookie(cookie: cookie as! String)
                             exit(0)
                         }
                     }else{
@@ -209,6 +132,42 @@ class SecondViewController: UIViewController {
         }catch{
             print("Error:\n \(error)")
             return
+        }
+    }
+    
+    
+    class func getCookie() -> String
+    {
+        let defaults = UserDefaults.standard
+        
+        if let cookie = defaults.string(forKey: "cookie") {
+            //print("getCookie() -> \(cookie)")
+            return cookie
+        }
+        else{
+            return ""
+        }
+    }
+    
+    func saveCookie(cookie:String)
+    {
+        let defaults = UserDefaults.standard
+        
+        defaults.setValue(cookie, forKey: "cookie")
+        
+        defaults.synchronize()
+    }
+    
+    func matches(for regex: String, in text: String) -> [String] {
+        
+        do {
+            let regex = try NSRegularExpression(pattern: regex)
+            let nsString = text as NSString
+            let results = regex.matches(in: text, range: NSRange(location: 0, length: nsString.length))
+            return results.map { nsString.substring(with: $0.range)}
+        } catch let error as NSError {
+            print("invalid regex: \(error.localizedDescription)")
+            return []
         }
     }
     
