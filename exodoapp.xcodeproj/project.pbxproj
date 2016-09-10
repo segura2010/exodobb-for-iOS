@@ -28,7 +28,45 @@
 		D3AF71A61BADB96100B33DF7 /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF71A51BADB96100B33DF7 /* ThreadCell.swift */; };
 		D3CE06F31BAC6DD4005EE82D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CE06F21BAC6DD4005EE82D /* libz.tbd */; };
 		D3D21C681BB3F71E0051EF9C /* UserChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D21C671BB3F71E0051EF9C /* UserChatViewController.swift */; };
+		D3ED46B91D84161D006DE053 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ED46B81D84161C006DE053 /* IntentHandler.swift */; };
+		D3ED46C11D84161D006DE053 /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3ED46C01D84161D006DE053 /* IntentsUI.framework */; };
+		D3ED46C41D84161D006DE053 /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ED46C31D84161D006DE053 /* IntentViewController.swift */; };
+		D3ED46C71D84161D006DE053 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3ED46C51D84161D006DE053 /* MainInterface.storyboard */; };
+		D3ED46CB1D84161D006DE053 /* exodobbSiriIntentUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D3ED46BF1D84161D006DE053 /* exodobbSiriIntentUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D3ED46CE1D84161D006DE053 /* exodobbSiriIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D3ED46B61D84161C006DE053 /* exodobbSiriIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D3ED46C91D84161D006DE053 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D34FA1611BAC6B9C00F79FDD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D3ED46BE1D84161D006DE053;
+			remoteInfo = exodobbSiriIntentUI;
+		};
+		D3ED46CC1D84161D006DE053 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D34FA1611BAC6B9C00F79FDD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D3ED46B51D84161C006DE053;
+			remoteInfo = exodobbSiriIntent;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D3ED46D51D84161D006DE053 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D3ED46CB1D84161D006DE053 /* exodobbSiriIntentUI.appex in Embed App Extensions */,
+				D3ED46CE1D84161D006DE053 /* exodobbSiriIntent.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7C5FCEBF8361023A02A48E17 /* Pods_exodoapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_exodoapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +96,14 @@
 		D3CE06F01BAC6DCE005EE82D /* SwiftWebSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftWebSocket.framework; path = "Pods/../build/Debug-iphoneos/SwiftWebSocket.framework"; sourceTree = "<group>"; };
 		D3CE06F21BAC6DD4005EE82D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D3D21C671BB3F71E0051EF9C /* UserChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChatViewController.swift; sourceTree = "<group>"; };
+		D3ED46B61D84161C006DE053 /* exodobbSiriIntent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = exodobbSiriIntent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3ED46B81D84161C006DE053 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		D3ED46BA1D84161D006DE053 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3ED46BF1D84161D006DE053 /* exodobbSiriIntentUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = exodobbSiriIntentUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3ED46C01D84161D006DE053 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
+		D3ED46C31D84161D006DE053 /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
+		D3ED46C61D84161D006DE053 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		D3ED46C81D84161D006DE053 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D86FF4C86286D2092713AF2F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -67,6 +113,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3CE06F31BAC6DD4005EE82D /* libz.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3ED46B31D84161C006DE053 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3ED46BC1D84161D006DE053 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3ED46C11D84161D006DE053 /* IntentsUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +150,7 @@
 				D3CE06F01BAC6DCE005EE82D /* SwiftWebSocket.framework */,
 				D86FF4C86286D2092713AF2F /* Pods.framework */,
 				7C5FCEBF8361023A02A48E17 /* Pods_exodoapp.framework */,
+				D3ED46C01D84161D006DE053 /* IntentsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -97,6 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				D34FA16B1BAC6B9C00F79FDD /* exodoapp */,
+				D3ED46B71D84161C006DE053 /* exodobbSiriIntent */,
+				D3ED46C21D84161D006DE053 /* exodobbSiriIntentUI */,
 				D34FA16A1BAC6B9C00F79FDD /* Products */,
 				AF014A8F71AB7901232EDAF2 /* Frameworks */,
 				5AE8813543E16685044EAACB /* Pods */,
@@ -107,6 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				D34FA1691BAC6B9C00F79FDD /* ExodoBB.app */,
+				D3ED46B61D84161C006DE053 /* exodobbSiriIntent.appex */,
+				D3ED46BF1D84161D006DE053 /* exodobbSiriIntentUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -139,6 +205,25 @@
 			path = exodoapp;
 			sourceTree = "<group>";
 		};
+		D3ED46B71D84161C006DE053 /* exodobbSiriIntent */ = {
+			isa = PBXGroup;
+			children = (
+				D3ED46B81D84161C006DE053 /* IntentHandler.swift */,
+				D3ED46BA1D84161D006DE053 /* Info.plist */,
+			);
+			path = exodobbSiriIntent;
+			sourceTree = "<group>";
+		};
+		D3ED46C21D84161D006DE053 /* exodobbSiriIntentUI */ = {
+			isa = PBXGroup;
+			children = (
+				D3ED46C31D84161D006DE053 /* IntentViewController.swift */,
+				D3ED46C51D84161D006DE053 /* MainInterface.storyboard */,
+				D3ED46C81D84161D006DE053 /* Info.plist */,
+			);
+			path = exodobbSiriIntentUI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -149,15 +234,52 @@
 				D34FA1651BAC6B9C00F79FDD /* Sources */,
 				D34FA1661BAC6B9C00F79FDD /* Frameworks */,
 				D34FA1671BAC6B9C00F79FDD /* Resources */,
+				D3ED46D51D84161D006DE053 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D3ED46CA1D84161D006DE053 /* PBXTargetDependency */,
+				D3ED46CD1D84161D006DE053 /* PBXTargetDependency */,
 			);
 			name = exodoapp;
 			productName = exodoapp;
 			productReference = D34FA1691BAC6B9C00F79FDD /* ExodoBB.app */;
 			productType = "com.apple.product-type.application";
+		};
+		D3ED46B51D84161C006DE053 /* exodobbSiriIntent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D3ED46D41D84161D006DE053 /* Build configuration list for PBXNativeTarget "exodobbSiriIntent" */;
+			buildPhases = (
+				D3ED46B21D84161C006DE053 /* Sources */,
+				D3ED46B31D84161C006DE053 /* Frameworks */,
+				D3ED46B41D84161C006DE053 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = exodobbSiriIntent;
+			productName = exodobbSiriIntent;
+			productReference = D3ED46B61D84161C006DE053 /* exodobbSiriIntent.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		D3ED46BE1D84161D006DE053 /* exodobbSiriIntentUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D3ED46D31D84161D006DE053 /* Build configuration list for PBXNativeTarget "exodobbSiriIntentUI" */;
+			buildPhases = (
+				D3ED46BB1D84161D006DE053 /* Sources */,
+				D3ED46BC1D84161D006DE053 /* Frameworks */,
+				D3ED46BD1D84161D006DE053 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = exodobbSiriIntentUI;
+			productName = exodobbSiriIntentUI;
+			productReference = D3ED46BF1D84161D006DE053 /* exodobbSiriIntentUI.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -165,6 +287,7 @@
 		D34FA1611BAC6B9C00F79FDD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Alberto;
 				TargetAttributes = {
@@ -172,6 +295,16 @@
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = HG5KUP66BT;
 						LastSwiftMigration = 0800;
+					};
+					D3ED46B51D84161C006DE053 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = HG5KUP66BT;
+						ProvisioningStyle = Automatic;
+					};
+					D3ED46BE1D84161D006DE053 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = HG5KUP66BT;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -189,6 +322,8 @@
 			projectRoot = "";
 			targets = (
 				D34FA1681BAC6B9C00F79FDD /* exodoapp */,
+				D3ED46B51D84161C006DE053 /* exodobbSiriIntent */,
+				D3ED46BE1D84161D006DE053 /* exodobbSiriIntentUI */,
 			);
 		};
 /* End PBXProject section */
@@ -202,6 +337,21 @@
 				D34FA1761BAC6B9C00F79FDD /* Assets.xcassets in Resources */,
 				D314E87B1D6B636D0072484F /* RefreshControlView.xib in Resources */,
 				D34FA1741BAC6B9C00F79FDD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3ED46B41D84161C006DE053 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3ED46BD1D84161D006DE053 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3ED46C71D84161D006DE053 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,7 +381,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D3ED46B21D84161C006DE053 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3ED46B91D84161D006DE053 /* IntentHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3ED46BB1D84161D006DE053 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3ED46C41D84161D006DE053 /* IntentViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D3ED46CA1D84161D006DE053 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D3ED46BE1D84161D006DE053 /* exodobbSiriIntentUI */;
+			targetProxy = D3ED46C91D84161D006DE053 /* PBXContainerItemProxy */;
+		};
+		D3ED46CD1D84161D006DE053 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D3ED46B51D84161C006DE053 /* exodobbSiriIntent */;
+			targetProxy = D3ED46CC1D84161D006DE053 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D34FA1721BAC6B9C00F79FDD /* Main.storyboard */ = {
@@ -248,6 +427,14 @@
 				D34FA1781BAC6B9C00F79FDD /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D3ED46C51D84161D006DE053 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D3ED46C61D84161D006DE053 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -342,6 +529,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 95073FC1ED65C13905E175DF /* Pods-exodoapp.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = HG5KUP66BT;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
@@ -359,6 +547,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9537398DD83E065CB908FF44 /* Pods-exodoapp.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = HG5KUP66BT;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
@@ -368,6 +557,82 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = segura.exodoapp;
 				PRODUCT_NAME = ExodoBB;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		D3ED46CF1D84161D006DE053 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = HG5KUP66BT;
+				INFOPLIST_FILE = exodobbSiriIntent/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = segura.exodoapp.exodobbSiriIntent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		D3ED46D01D84161D006DE053 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = HG5KUP66BT;
+				INFOPLIST_FILE = exodobbSiriIntent/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = segura.exodoapp.exodobbSiriIntent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		D3ED46D11D84161D006DE053 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = HG5KUP66BT;
+				INFOPLIST_FILE = exodobbSiriIntentUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = segura.exodoapp.exodobbSiriIntentUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		D3ED46D21D84161D006DE053 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = HG5KUP66BT;
+				INFOPLIST_FILE = exodobbSiriIntentUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = segura.exodoapp.exodobbSiriIntentUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -392,6 +657,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		D3ED46D31D84161D006DE053 /* Build configuration list for PBXNativeTarget "exodobbSiriIntentUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3ED46D11D84161D006DE053 /* Debug */,
+				D3ED46D21D84161D006DE053 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D3ED46D41D84161D006DE053 /* Build configuration list for PBXNativeTarget "exodobbSiriIntent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3ED46CF1D84161D006DE053 /* Debug */,
+				D3ED46D01D84161D006DE053 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 

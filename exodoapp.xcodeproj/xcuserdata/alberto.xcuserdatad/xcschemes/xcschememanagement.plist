@@ -9,10 +9,30 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>exodobbSiriIntent.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>exodobbSiriIntentUI.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>D34FA1681BAC6B9C00F79FDD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D3ED46B51D84161C006DE053</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D3ED46BE1D84161D006DE053</key>
 		<dict>
 			<key>primary</key>
 			<true/>
