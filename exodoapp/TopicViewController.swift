@@ -16,7 +16,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var posts = [Post]()
     
-    var BASE_URL = "http://exo.do/api/"
+    var BASE_URL = "https://exo.do/api/"
     var cookie: String!
     //var ws = nil
 
@@ -121,7 +121,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         actPage = page
         pageTxt.text = actPage as? String
         
-        let url = "topic/\(topic.slug)/?page=\(actPage)".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlFragmentAllowed)
+        let url = "topic/\(topic.slug!)/?page=\(actPage)".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlFragmentAllowed)
         
         var request = URLRequest(url: URL(string: BASE_URL + url!)!)
         let session = URLSession.shared
@@ -134,7 +134,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             let task = session.dataTask(with: request, completionHandler: {data, response, error -> Void in
                 do{
-                    print("Response: \(response)")
+                    //print("Response: \(response)")
                     let strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
                     //print("Body: \(strData)")
                     let json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? NSDictionary

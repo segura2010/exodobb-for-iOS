@@ -43,8 +43,8 @@ class PostCell: UITableViewCell {
         //var htmlContent = NSAttributedString(string: p.content, attributes:)
         infoLbl.text = p.username + " - " + p.relativeTime
         
-        votes.text = "\(p.votes)"
-        reputation.text = "\(p.reputation)"
+        votes.text = "\(p.votes!)"
+        reputation.text = "\(p.reputation!)"
         
     }
     
