@@ -40,7 +40,7 @@ class UserChatViewController: UIViewController {
     // Request Chats
     func requestMessages()
     {
-        let msg = "\(messageNum)[\"modules.chats.get\",{\"roomId\":\"\(room.rid)\",\"since\":\"recent\"}]"
+        let msg = "\(messageNum)[\"modules.chats.get\",{\"roomId\":\"\(room.rid!)\",\"since\":\"recent\"}]"
         ws.send(msg)
     }
     
@@ -89,7 +89,7 @@ class UserChatViewController: UIViewController {
     {
         let myMsg = messageTxt.text!
         messageTxt.text = ""
-        let msg = "\(messageNum)[\"modules.chats.send\",{\"roomId\":\"\(room.rid)\",\"message\":\"\(myMsg)\"}]"
+        let msg = "\(messageNum)[\"modules.chats.send\",{\"roomId\":\"\(room.rid!)\",\"message\":\"\(myMsg)\"}]"
         print(msg)
         ws.send(msg)
     }

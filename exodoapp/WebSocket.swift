@@ -280,7 +280,7 @@ private class UTF8 {
             }
             procd = 0
             count = 0
-            text.append(String.init(describing: UnicodeScalar(codepoint)))
+            text.append(String.init(describing: UnicodeScalar(codepoint)!))
         }
         return
     }
@@ -720,7 +720,7 @@ private class InnerWebSocket: Hashable {
                 switch frame.code {
                 case .text:
                     fire {
-                        self.event.message(data: frame.utf8.text)
+                        self.event.message(frame.utf8.text)
                         self.eventDelegate?.webSocketMessageText?(frame.utf8.text)
                     }
                 case .binary:

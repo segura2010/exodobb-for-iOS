@@ -13,6 +13,7 @@ class UserChatCell: UITableViewCell {
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var picture: UIImageView!
     
+    @IBOutlet var statusLbl: UILabel!
     
     func configureCell(_ u:Room)
     {
@@ -39,6 +40,17 @@ class UserChatCell: UITableViewCell {
                     }
                 }
             }
+        }
+        
+        switch u.status {
+        case "online":
+            statusLbl.textColor = UIColor.green
+        case "away":
+            statusLbl.textColor = UIColor.yellow
+        case "dnd":
+            statusLbl.textColor = UIColor.red
+        default:
+            statusLbl.textColor = UIColor.gray
         }
         
     }

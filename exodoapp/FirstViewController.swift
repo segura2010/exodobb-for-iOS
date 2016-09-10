@@ -222,7 +222,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cleanData = recvData.substring(with: (recvData.startIndex ..< recvData.characters.index(recvData.endIndex, offsetBy: -1)))
         
         //print("CLEANED!!")
-        //print(cleanData)
+        //print(cleanData.unicodeScalars)
         
         do{ // TODO: FIX JSONSerialization
             let json = try JSONSerialization.jsonObject(with: cleanData.data(using: String.Encoding.utf8)!, options: .allowFragments) as? Dictionary<String, AnyObject>
@@ -244,7 +244,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             })
             
         }catch{
-            print("ERROR")
+            print("ERROR: \(error)")
         }
     }
     

@@ -36,8 +36,9 @@ class ThreadCell: UITableViewCell {
         }
         infoLbl.text = topic.lastPostUser + " - " + topic.lastPostDate
         
-        repliesField.text = "\(topic.postCount)"
-        viewsField.text = "\(topic.viewCount)"
+        repliesField.text = "\(topic.postCount!)"
+        viewsField.text = "\(topic.viewCount!)"
+        
     }
 
     override func awakeFromNib() {

@@ -32,16 +32,16 @@ class Thread {
         self.lastPostDate = threadDic["lastposttimeISO"] as? String
         self.unread = threadDic["unread"] as? Bool
         
-        self.postCount = threadDic["postcount"] as? Int
-        self.viewCount = threadDic["viewcount"] as? Int
+        self.postCount = threadDic["postcount"] as! Int
+        self.viewCount = threadDic["viewcount"] as! Int
         
         self.locked = threadDic["locked"] as? Bool
                 
         //let kk = threadDic as! NSDictionary
         //var kk2 = kk!["user"]! as? Dictionary<String, AnyObject>
         
-        if let teaser = threadDic["teaser"] as? NSDictionary{
-            self.lastPostUser = (teaser.object(forKey: "user") as AnyObject).object(forKey: "username") as! String
+        if let teaser = threadDic["teaser"] as? [String:AnyObject]{ //NSDictionary{
+            self.lastPostUser = teaser["user"]?["username"] as? String //(teaser.object(forKey: "user") as AnyObject).object(forKey: "username") as! String
         }
         else if let user = threadDic["user"] as? NSDictionary{
             self.lastPostUser = user.object(forKey: "username") as! String
