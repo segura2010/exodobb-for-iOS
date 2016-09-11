@@ -32,11 +32,11 @@ class PostViewController: UIViewController {
         
         cookie = SecondViewController.getCookie()
         
-        let html = "<link rel=\"stylesheet\" type=\"text/css\" href=\"/stylesheet.css\"> \(post.content)"
+        let html = "<link rel=\"stylesheet\" type=\"text/css\" href=\"/stylesheet.css\"> \(post.content!)"
         
         webView.loadHTMLString(html, baseURL:URL(string: "http://exo.do/"))
         
-        replyTextView.text = "@\(post.userslug) "
+        replyTextView.text = "@\(post.userslug!) "
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PostViewController.DismissKeyboard))
         view.addGestureRecognizer(tap)
