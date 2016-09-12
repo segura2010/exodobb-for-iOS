@@ -138,9 +138,9 @@ class SecondViewController: UIViewController {
     
     class func getCookie() -> String
     {
-        let defaults = UserDefaults.standard
+        let defaults = UserDefaults(suiteName: "group.exodobb")
         
-        if let cookie = defaults.string(forKey: "cookie") {
+        if let cookie = defaults?.string(forKey: "cookie") {
             print("getCookie() -> \(cookie)")
             return cookie
         }
@@ -151,11 +151,19 @@ class SecondViewController: UIViewController {
     
     func saveCookie(cookie:String)
     {
+        /*
         let defaults = UserDefaults.standard
         
         defaults.setValue(cookie, forKey: "cookie")
         
         defaults.synchronize()
+         */
+        
+        let defaults = UserDefaults(suiteName: "group.exodobb")
+        
+        defaults?.setValue(cookie, forKey: "cookie")
+        
+        defaults?.synchronize()
     }
     
     func matches(for regex: String, in text: String) -> [String] {

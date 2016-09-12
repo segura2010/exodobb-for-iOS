@@ -122,7 +122,7 @@ class PostViewController: UIViewController {
         
         refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
             print("Handle Ok logic here")
-            let msg = "\(messageNum)[\"posts.reply\",{\"tid\":\(self.post.tid),\"content\":\"\(self.replyTextView.text)\",\"lock\":false}]"
+            let msg = "\(messageNum)[\"posts.reply\",{\"tid\":\(self.post.tid!),\"content\":\"\(self.replyTextView.text!)\",\"lock\":false}]"
             print(msg)
             ws.send(msg)
         }))

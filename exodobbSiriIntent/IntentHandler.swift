@@ -22,12 +22,14 @@ class IntentHandler: INExtension, INSendMessageIntentHandling, INSearchForMessag
     
     var message = ""
     var thread = ""
-    var threadId = 0
+    var threadId = ""
     
     
     override func handler(for intent: INIntent) -> Any {
         // This is the default implementation.  If you want different objects to handle different intents,
         // you can override this and return the handler you want for that particular intent.
+        
+        print("COOKIE: \(getCookie())")
         
         return self
     }
@@ -45,33 +47,72 @@ class IntentHandler: INExtension, INSendMessageIntentHandling, INSearchForMessag
             }
             
             var resolutionResults = [INPersonResolutionResult]()
+            print(recipients)
             for recipient in recipients {
-                let matchingContacts = [recipient] // Implement your contact matching logic here to create an array of matching contacts
+                var matchingContacts = [INPerson]() // Implement your contact matching logic here to create an array of matching contacts
                 
                 // Here we must search the topic
                 // Search endpoint https://exo.do/api/search/keyword?in=titles
                 print("\(recipient.spokenPhrase)")
+                print("IDENTIFIER: \(recipient.contactIdentifier)")
+                print("DIS: \(recipient.displayName)")
+                print("REC: \(recipient)")
                 
-                switch matchingContacts.count {
-                case 2  ... Int.max:
-                    // We need Siri's help to ask user to pick one from the matches.
-                    resolutionResults += [INPersonResolutionResult.disambiguation(with: matchingContacts)]
+                NodeBBAPI.sharedInstance.searchTopicByTitle(recipient.spokenPhrase!, cookie: getCookie()){(error:NSError?, responseObject:[String:AnyObject]?) in
                     
-                case 1:
-                    // We have exactly one matching contact
-                    resolutionResults += [INPersonResolutionResult.success(with: recipient)]
+                    if(error != nil)
+                    {
+                        resolutionResults += [INPersonResolutionResult.unsupported()]
+                        completion(resolutionResults)
+                        return print("error")
+                    }
                     
-                case 0:
-                    // We have no contacts matching the description provided
-                    resolutionResults += [INPersonResolutionResult.unsupported()]
+                    var person = recipient
                     
-                default:
-                    break
+                    //print(responseObject)
+                    if let posts = responseObject?["posts"] as? [[String:AnyObject]]
+                    {
+                        /* We should give the user the option to chose the topic, but now it creates an infinite loop in Siri..
+                        for p in posts
+                        {
+                            let title = p["topic"]?["title"]
+                            let tid = "\(p["topic"]?["tid"])"
+                            //print("\(p["topic"]?["title"])")
+                            var person = INPerson(handle: tid, displayName: title as! String?, contactIdentifier: tid)
+                            matchingContacts.append(person)
+                        }
+                        */
+                        
+                        // So we use the first one
+                        let title = posts[0]["topic"]?["title"]
+                        let tid = "\(posts[0]["topic"]!["tid"]!)"
+                        print("Selected: \(title)")
+                        person = INPerson(handle: tid, displayName: title as! String?, contactIdentifier: tid)
+                        matchingContacts.append(person)
+                    }
+                    
+                    switch matchingContacts.count {
+                    case 2  ... Int.max:
+                        // We need Siri's help to ask user to pick one from the matches.
+                        resolutionResults += [INPersonResolutionResult.disambiguation(with: matchingContacts)]
+                        
+                    case 1:
+                        // We have exactly one matching contact
+                        resolutionResults += [INPersonResolutionResult.success(with: person)]
+                        
+                    case 0:
+                        // We have no contacts matching the description provided
+                        resolutionResults += [INPersonResolutionResult.unsupported()]
+                        
+                    default:
+                        break
+                        
+                    }
+                    
+                    completion(resolutionResults)
                     
                 }
             }
-            
-            completion(resolutionResults)
         }
     }
     
@@ -90,6 +131,8 @@ class IntentHandler: INExtension, INSendMessageIntentHandling, INSearchForMessag
     func confirm(sendMessage intent: INSendMessageIntent, completion: @escaping (INSendMessageIntentResponse) -> Void) {
         // Verify user is authenticated and your app is ready to send a message.
         
+        NodeBBAPI.sharedInstance.initWSEvents()
+        
         let userActivity = NSUserActivity(activityType: NSStringFromClass(INSendMessageIntent.self))
         let response = INSendMessageIntentResponse(code: .ready, userActivity: userActivity)
         completion(response)
@@ -98,6 +141,13 @@ class IntentHandler: INExtension, INSendMessageIntentHandling, INSearchForMessag
     // Handle the completed intent (required).
     func handle(sendMessage intent: INSendMessageIntent, completion: @escaping (INSendMessageIntentResponse) -> Void) {
         // Implement your application logic to send a message here.
+        
+        message = intent.content!
+        let tid = intent.recipients?[0].contactIdentifier
+        //let tid = intent.recipients?[0].contactIdentifier
+        print("SENDING: \(message) to TID: \(tid)")
+        
+        NodeBBAPI.sharedInstance.sendPost(message, tid:tid!)
         
         let userActivity = NSUserActivity(activityType: NSStringFromClass(INSendMessageIntent.self))
         let response = INSendMessageIntentResponse(code: .success, userActivity: userActivity)
@@ -131,6 +181,20 @@ class IntentHandler: INExtension, INSendMessageIntentHandling, INSearchForMessag
         let userActivity = NSUserActivity(activityType: NSStringFromClass(INSetMessageAttributeIntent.self))
         let response = INSetMessageAttributeIntentResponse(code: .success, userActivity: userActivity)
         completion(response)
+    }
+    
+    
+    func getCookie() -> String
+    {
+        let defaults = UserDefaults(suiteName: "group.exodobb")
+        
+        if let cookie = defaults?.string(forKey: "cookie") {
+            print("getCookie() -> \(cookie)")
+            return cookie
+        }
+        else{
+            return ""
+        }
     }
 }
 
