@@ -15,6 +15,9 @@
 		D34FA1741BAC6B9C00F79FDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34FA1721BAC6B9C00F79FDD /* Main.storyboard */; };
 		D34FA1761BAC6B9C00F79FDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34FA1751BAC6B9C00F79FDD /* Assets.xcassets */; };
 		D34FA1791BAC6B9C00F79FDD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34FA1771BAC6B9C00F79FDD /* LaunchScreen.storyboard */; };
+		D354D3ED1D9AEC4700603128 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354D3EC1D9AEC4700603128 /* NotificationsViewController.swift */; };
+		D354D3EF1D9AEE0700603128 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354D3EE1D9AEE0700603128 /* NotificationCell.swift */; };
+		D354D3F11D9AEE8D00603128 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D354D3F01D9AEE8D00603128 /* Notification.swift */; };
 		D39780011BAEC43E0016865A /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39780001BAEC43E0016865A /* PostCell.swift */; };
 		D39780031BAEC4530016865A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39780021BAEC4530016865A /* Post.swift */; };
 		D39780051BAECCCA0016865A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D39780041BAECCCA0016865A /* PostViewController.swift */; };
@@ -86,6 +89,9 @@
 		D34FA1751BAC6B9C00F79FDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D34FA1781BAC6B9C00F79FDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D34FA17A1BAC6B9C00F79FDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D354D3EC1D9AEC4700603128 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		D354D3EE1D9AEE0700603128 /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		D354D3F01D9AEE8D00603128 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		D39780001BAEC43E0016865A /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		D39780021BAEC4530016865A /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D39780041BAECCCA0016865A /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -210,6 +216,9 @@
 				D3D21C671BB3F71E0051EF9C /* UserChatViewController.swift */,
 				D334BD781D6B1B3F009D478A /* Room.swift */,
 				D314E87A1D6B636D0072484F /* RefreshControlView.xib */,
+				D354D3EC1D9AEC4700603128 /* NotificationsViewController.swift */,
+				D354D3EE1D9AEE0700603128 /* NotificationCell.swift */,
+				D354D3F01D9AEE8D00603128 /* Notification.swift */,
 			);
 			path = exodoapp;
 			sourceTree = "<group>";
@@ -398,13 +407,16 @@
 				D334BD791D6B1B3F009D478A /* Room.swift in Sources */,
 				D34FA1711BAC6B9C00F79FDD /* SecondViewController.swift in Sources */,
 				D3AB3F211BADC3E900B91091 /* Thread.swift in Sources */,
+				D354D3EF1D9AEE0700603128 /* NotificationCell.swift in Sources */,
 				D3AF71A61BADB96100B33DF7 /* ThreadCell.swift in Sources */,
 				D39780051BAECCCA0016865A /* PostViewController.swift in Sources */,
+				D354D3ED1D9AEC4700603128 /* NotificationsViewController.swift in Sources */,
 				D34FA16D1BAC6B9C00F79FDD /* AppDelegate.swift in Sources */,
 				D34FA16F1BAC6B9C00F79FDD /* FirstViewController.swift in Sources */,
 				D39AD8D91BB2F8D300A6F749 /* UserChatCell.swift in Sources */,
 				D3D21C681BB3F71E0051EF9C /* UserChatViewController.swift in Sources */,
 				D39780031BAEC4530016865A /* Post.swift in Sources */,
+				D354D3F11D9AEE8D00603128 /* Notification.swift in Sources */,
 				D3AB3F231BADF1FF00B91091 /* TopicViewController.swift in Sources */,
 				D39780011BAEC43E0016865A /* PostCell.swift in Sources */,
 				D39AD8DD1BB2FA2300A6F749 /* ChatTableViewController.swift in Sources */,
