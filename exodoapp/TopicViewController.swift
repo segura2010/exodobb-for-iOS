@@ -12,7 +12,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var topic: Thread!
     var actPage = 1
-    var maxPage = 0
+    var maxPage = 1
     
     var posts = [Post]()
     
@@ -35,7 +35,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.delegate = self
         tableView.dataSource = self
         
-        loadPosts(actPage)
+        loadPosts()
 
         // Do any additional setup after loading the view.
     }
@@ -114,70 +114,28 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
-    
-    
-    func loadPosts(_ page: Int){
-        //print(page)
-        actPage = page
-        pageTxt.text = actPage as? String
+    func loadPosts(){
         
-        let url = "topic/\(topic.slug!)/?page=\(actPage)".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlFragmentAllowed)
-        
-        var request = URLRequest(url: URL(string: BASE_URL + url!)!)
-        let session = URLSession.shared
-        request.httpMethod = "GET"
-        
-        do {
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-            request.addValue(cookie, forHTTPHeaderField: "Cookie")
+        NodeBBAPI.sharedInstance.getTopicPosts(topic.slug!, page: actPage) { (err, json) in
             
-            let task = session.dataTask(with: request, completionHandler: {data, response, error -> Void in
-                do{
-                    //print("Response: \(response)")
-                    let strData = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-                    //print("Body: \(strData)")
-                    let json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? NSDictionary
-                    
-                    // The JSONObjectWithData constructor didn't return an error. But, we should still
-                    // check and make sure that json has a value using optional binding.
-                    if let parseJSON = json
-                    {
-                        
-                        if let posts = parseJSON["posts"] as? [Dictionary<String, AnyObject>] {
-                            self.maxPage = (parseJSON["pagination"] as! [String:AnyObject])["pageCount"] as! Int
-                            self.posts = [Post]()
-                            for p in posts
-                            {
-                                let post = Post(threadDic: p)
-                                self.posts.append(post)
-                            }
-                        }
-                        
-                        // Main UI Thread
-                        DispatchQueue.main.async(execute: { () -> Void in
-                            self.tableView.reloadData()
-                            self.pageTxt.text = "\(self.actPage) / \(self.maxPage)"
-                        })
-                    }
-                    else
-                    {
-                        // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
-                        let jsonStr = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-                        print("Error could not parse JSON: \(jsonStr)")
-                    }
-                }catch{
-                    print("Error:\n \(error)")
-                    return
+            if let jsonPosts = json?["posts"] as? [Dictionary<String, AnyObject>] {
+                self.maxPage = (json?["pagination"] as! [String:AnyObject])["pageCount"] as! Int
+                self.posts = [Post]()
+                for p in jsonPosts
+                {
+                    let post = Post(threadDic: p)
+                    self.posts.append(post)
                 }
-                
+            }
+            
+            // Main UI Thread
+            DispatchQueue.main.async(execute: { () -> Void in
+                self.tableView.reloadData()
+                self.pageTxt.text = "\(self.actPage) / \(self.maxPage)"
             })
             
-            task.resume()
-        }catch{
-            print("Error:\n \(error)")
-            return
         }
+        
     }
     
     func favPost(_ pid: Int, tid:Int){
@@ -218,13 +176,13 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBAction func lastPageBtnClick(_ sender: AnyObject) {
         pageTxt.text = "\(actPage) / \(maxPage)"
         actPage = maxPage
-        loadPosts(maxPage)
+        loadPosts()
     }
     @IBAction func nextPageBtnClick(_ sender: AnyObject) {
         if(actPage < maxPage)
         {
             actPage = actPage + 1
-            loadPosts(actPage)
+            loadPosts()
             pageTxt.text = "\(actPage) / \(maxPage)"
         }
     }
@@ -232,7 +190,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if(actPage > 1)
         {
             actPage = actPage - 1
-            loadPosts(actPage)
+            loadPosts()
             pageTxt.text = "\(actPage) / \(maxPage)"
         }
     }

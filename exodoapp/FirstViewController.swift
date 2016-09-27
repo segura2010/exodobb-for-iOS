@@ -9,9 +9,11 @@
 import UIKit
 //import SwiftWebSocket
 
+
 let WS_SERVER = "wss://exo.do/socket.io/?EIO=3&transport=websocket"
-var ws = WebSocket(WS_SERVER)
+var ws = WebSocket("wss://exo.do/socket.io/?EIO=3&transport=websocket")
 var messageNum = 421
+ 
 
 class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -23,6 +25,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var topics = [Thread]()
     var isRefreshing = false
     var nextStart = 10
+    var actPage = 1
     
     let URL_BASE_API = "https://exo.do/api/"
     var cookie = ""
@@ -39,16 +42,10 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
-        indicator.hidesWhenStopped = true
-        
-        cookie = SecondViewController.getCookie()
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        initWSEvents()
-        
+        // USING NEW API
+        NodeBBAPI.sharedInstance.useCookie()
+        //NodeBBAPI.sharedInstance.initWSEvents()
+        // END USING NEW API
         
         // Init refresh control
         refreshControl.tintColor = UIColor.clear
@@ -58,6 +55,17 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         loadRefreshControl()
         
         self.tableView.addSubview(refreshControl)
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        indicator.hidesWhenStopped = true
+        
+        /*
+        cookie = SecondViewController.getCookie()
+        
+        initWSEvents()
+         */
     }
     
     
@@ -177,26 +185,26 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         self.isRefreshing = false
                         self.topics = [Thread]()
                     }
-                    self.updateThreads(data)
+                    //self.updateThreads(data)
                     self.refreshControl.endRefreshing()
                 }
                 else if(data.hasPrefix("{\"privileges\":") || data.hasPrefix("{\"posts\":"))
                 {   // Posts for topic received
-                    self.updateThreads(data)
+                    //self.updateThreads(data)
                 }
                 else if(data.hasPrefix("{\"rooms\":"))
                 {   // Chats received
                     // Get chats view controller, and call update function
                     let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     var ChatsVC = mainStoryboard.instantiateViewController(withIdentifier: "ChatVC") as! ChatTableViewController
-                    ChatsVC.updateChats(data)
+                    //ChatsVC.updateChats(data)
                 }
                 else if(data.hasPrefix("[{\"content\""))
                 {   // Chats received
                     // Get chats view controller, and call update function
                     let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     var MessagesVC = mainStoryboard.instantiateViewController(withIdentifier: "UserChatVC") as! UserChatViewController
-                    MessagesVC.updateMessages(data)
+                    //MessagesVC.updateMessages(data)
                 }
                 /* else if(data.hasPrefix("\"")){
                     let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -209,28 +217,24 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    func requestUpdateThreads(_ start:Int)
+    func requestUpdateThreads(_ page:Int)
     {
         self.indicator.startAnimating()
+        /*
         let msg = "\(messageNum)[\"topics.loadMoreFromSet\",{\"after\":\"\(start)\",\"set\":\"topics:recent\"}]"
         ws.send(msg)
-    }
-    
-    func updateThreads(_ recvData:String)
-    {
-        // I have to delete: 432[null,{\"topics\":"
-        let cleanData = recvData.substring(with: (recvData.startIndex ..< recvData.characters.index(recvData.endIndex, offsetBy: -1)))
+        */
         
-        //print("CLEANED!!")
-        //print(cleanData.unicodeScalars)
-        
-        do{ // TODO: FIX JSONSerialization
-            let json = try JSONSerialization.jsonObject(with: cleanData.data(using: String.Encoding.utf8)!, options: .allowFragments) as? Dictionary<String, AnyObject>
+        NodeBBAPI.sharedInstance.getRecentTopics(page) { (err, json) in
+            self.nextStart = (json!["nextStart"] as? Int)!
+            let jsonTopics = json!["topics"] as? [Dictionary<String, AnyObject>]
             
-            nextStart = (json!["nextStart"] as? Int)!
-            let topics = json!["topics"] as? [Dictionary<String, AnyObject>]
+            if self.actPage == 1
+            {
+                self.topics = [Thread]()
+            }
             
-            for t in topics!{
+            for t in jsonTopics!{
                 //print(t["tid"])
                 let topic = Thread(threadDic: t)
                 //print(topic.title)
@@ -241,37 +245,28 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             DispatchQueue.main.async(execute: { () -> Void in
                 self.tableView.reloadData()
                 self.indicator.stopAnimating()
+                self.refreshControl.endRefreshing()
             })
-            
-        }catch{
-            print("ERROR: \(error)")
         }
-    }
-    
-    func markAsRead(_ id:Int)
-    {
-        let msg = "\(messageNum)[\"topics.markAsRead\",[\(id)]]"
-        ws.send(msg)
+        
     }
     
     
     // Buttons Actions
     @IBAction func refreshBtnClick(_ sender: AnyObject) {
-        topics = [Thread]()
-        requestUpdateThreads(0)
+        actPage = 1
+        requestUpdateThreads(actPage)
     }
     
     @IBAction func loadMoreBtnClick(_ sender: AnyObject) {
-        self.indicator.startAnimating()
-        requestUpdateThreads(nextStart)
+        actPage = actPage + 1
+        requestUpdateThreads(actPage)
     }
     
     @IBAction func readAllBtnClick(_ sender: AnyObject) {
-        indicator.startAnimating()
-        let msg = "\(messageNum)[\"topics.markAllRead\"]"
-        ws.send(msg)
-        topics = [Thread]()
-        requestUpdateThreads(0)
+        //NodeBBAPI.sharedInstance.markAllTopicsAsRead()
+        actPage = actPage + 1
+        requestUpdateThreads(actPage)
     }
     
     // Table details
@@ -286,7 +281,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 let topic = topics[(indexPath as NSIndexPath).row]
                 topicView.topic = topic
                 topicView.cookie = self.cookie
-                markAsRead(topic.tid)
+                
+                //NodeBBAPI.sharedInstance.markTopicAsRead(topic.tid)
             }
         }
         
@@ -316,7 +312,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     {
         print("changed")
         isRefreshing = true
-        self.requestUpdateThreads(0)
+        actPage = 1
+        self.requestUpdateThreads(actPage)
     }
 
 }

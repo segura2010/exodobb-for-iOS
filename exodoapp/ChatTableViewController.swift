@@ -83,33 +83,15 @@ class ChatTableViewController: UITableViewController {
     }
     
     
-    // Request Chats
     func requestChats()
     {
-        let msg = "\(messageNum)[\"modules.chats.getRecentChats\",{\"after\":0}]"
-        ws.send(msg)
-    }
-    
-    open func updateChats(_ recvData:String)
-    {
-        //print("UPDATECHATS: \(recvData)")
-        // I have to delete last char ]"
-        let cleanData = recvData.substring(with: (recvData.startIndex ..< recvData.characters.index(recvData.endIndex, offsetBy: -1)))
-        
-        //print("CLEANED!!")
-        //print(cleanData)
-        
-        do{
-            let json = try JSONSerialization.jsonObject(with: cleanData.data(using: String.Encoding.utf8)!, options: .allowFragments) as? Dictionary<String, AnyObject>
+        NodeBBAPI.sharedInstance.getChats { (err, json) in
             
-            // let nextStart = (json!["nextStart"] as? Int)!
             let users = json!["rooms"] as? [Dictionary<String, AnyObject>]
             
             chats = [Room]()
             for u in users!{
-                //print(t["tid"])
                 let room = Room(room: u)
-                //print(user.username)
                 chats.append(room)
             }
             
@@ -119,51 +101,8 @@ class ChatTableViewController: UITableViewController {
                 self.refreshC.endRefreshing()
             })
             
-        }catch{
-            print("ERROR")
         }
     }
-    
-
-    @IBAction func refreshBtnClick(_ sender: AnyObject) {
-        self.tableView.reloadData()
-        requestChats()
-    }
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     
     // MARK: - Navigation
@@ -185,9 +124,13 @@ class ChatTableViewController: UITableViewController {
     }
     
     
+    @IBAction func refreshBtnClick(_ sender: AnyObject) {
+        self.tableView.reloadData()
+        requestChats()
+    }
+    
     func refreshControlStateChanged()
     {
-        print("changed")
         self.requestChats()
     }
     

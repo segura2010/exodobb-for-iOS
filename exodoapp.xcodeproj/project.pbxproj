@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D31272B61D7B3BF3009A76F8 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31272B51D7B3BF3009A76F8 /* WebSocket.swift */; };
 		D314E87B1D6B636D0072484F /* RefreshControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D314E87A1D6B636D0072484F /* RefreshControlView.xib */; };
 		D334BD791D6B1B3F009D478A /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = D334BD781D6B1B3F009D478A /* Room.swift */; };
 		D34FA16D1BAC6B9C00F79FDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34FA16C1BAC6B9C00F79FDD /* AppDelegate.swift */; };
@@ -29,6 +28,8 @@
 		D3AB3F211BADC3E900B91091 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AB3F201BADC3E900B91091 /* Thread.swift */; };
 		D3AB3F231BADF1FF00B91091 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AB3F221BADF1FF00B91091 /* TopicViewController.swift */; };
 		D3AF71A61BADB96100B33DF7 /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AF71A51BADB96100B33DF7 /* ThreadCell.swift */; };
+		D3CC4EA51D9AC1BB00A79F92 /* NodeBBAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A6F25C1D871D4100CCDE75 /* NodeBBAPI.swift */; };
+		D3CC4EA61D9AC1BB00A79F92 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A6F2601D87339200CCDE75 /* WebSocket.swift */; };
 		D3CE06F31BAC6DD4005EE82D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CE06F21BAC6DD4005EE82D /* libz.tbd */; };
 		D3D21C681BB3F71E0051EF9C /* UserChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D21C671BB3F71E0051EF9C /* UserChatViewController.swift */; };
 		D3ED46B91D84161D006DE053 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ED46B81D84161C006DE053 /* IntentHandler.swift */; };
@@ -75,7 +76,6 @@
 		7C5FCEBF8361023A02A48E17 /* Pods_exodoapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_exodoapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95073FC1ED65C13905E175DF /* Pods-exodoapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exodoapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-exodoapp/Pods-exodoapp.debug.xcconfig"; sourceTree = "<group>"; };
 		9537398DD83E065CB908FF44 /* Pods-exodoapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exodoapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-exodoapp/Pods-exodoapp.release.xcconfig"; sourceTree = "<group>"; };
-		D31272B51D7B3BF3009A76F8 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
 		D314E87A1D6B636D0072484F /* RefreshControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshControlView.xib; sourceTree = "<group>"; };
 		D334BD781D6B1B3F009D478A /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		D34FA1691BAC6B9C00F79FDD /* ExodoBB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExodoBB.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,8 +95,8 @@
 		D39AD8DC1BB2FA2300A6F749 /* ChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
 		D3A6F25A1D871B4C00CCDE75 /* ExodoBB.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExodoBB.entitlements; sourceTree = "<group>"; };
 		D3A6F25B1D871B5A00CCDE75 /* exodobbSiriIntent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = exodobbSiriIntent.entitlements; sourceTree = "<group>"; };
-		D3A6F25C1D871D4100CCDE75 /* NodeBBAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeBBAPI.swift; sourceTree = "<group>"; };
-		D3A6F2601D87339200CCDE75 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
+		D3A6F25C1D871D4100CCDE75 /* NodeBBAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NodeBBAPI.swift; path = exodobbSiriIntent/NodeBBAPI.swift; sourceTree = "<group>"; };
+		D3A6F2601D87339200CCDE75 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = exodobbSiriIntent/WebSocket.swift; sourceTree = "<group>"; };
 		D3AB3F201BADC3E900B91091 /* Thread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
 		D3AB3F221BADF1FF00B91091 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		D3AF71A51BADB96100B33DF7 /* ThreadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadCell.swift; sourceTree = "<group>"; };
@@ -166,6 +166,7 @@
 		D34FA1601BAC6B9C00F79FDD = {
 			isa = PBXGroup;
 			children = (
+				D3CC4EA41D9ABC1300A79F92 /* NodeBBAPI */,
 				D34FA16B1BAC6B9C00F79FDD /* exodoapp */,
 				D3ED46B71D84161C006DE053 /* exodobbSiriIntent */,
 				D3ED46C21D84161D006DE053 /* exodobbSiriIntentUI */,
@@ -189,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				D3A6F25A1D871B4C00CCDE75 /* ExodoBB.entitlements */,
-				D31272B51D7B3BF3009A76F8 /* WebSocket.swift */,
 				D34FA16C1BAC6B9C00F79FDD /* AppDelegate.swift */,
 				D34FA16E1BAC6B9C00F79FDD /* FirstViewController.swift */,
 				D34FA1701BAC6B9C00F79FDD /* SecondViewController.swift */,
@@ -214,14 +214,21 @@
 			path = exodoapp;
 			sourceTree = "<group>";
 		};
+		D3CC4EA41D9ABC1300A79F92 /* NodeBBAPI */ = {
+			isa = PBXGroup;
+			children = (
+				D3A6F25C1D871D4100CCDE75 /* NodeBBAPI.swift */,
+				D3A6F2601D87339200CCDE75 /* WebSocket.swift */,
+			);
+			name = NodeBBAPI;
+			sourceTree = "<group>";
+		};
 		D3ED46B71D84161C006DE053 /* exodobbSiriIntent */ = {
 			isa = PBXGroup;
 			children = (
 				D3A6F25B1D871B5A00CCDE75 /* exodobbSiriIntent.entitlements */,
 				D3ED46B81D84161C006DE053 /* IntentHandler.swift */,
 				D3ED46BA1D84161D006DE053 /* Info.plist */,
-				D3A6F25C1D871D4100CCDE75 /* NodeBBAPI.swift */,
-				D3A6F2601D87339200CCDE75 /* WebSocket.swift */,
 			);
 			path = exodobbSiriIntent;
 			sourceTree = "<group>";
@@ -384,8 +391,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3CC4EA51D9AC1BB00A79F92 /* NodeBBAPI.swift in Sources */,
+				D3CC4EA61D9AC1BB00A79F92 /* WebSocket.swift in Sources */,
 				D39AD8DB1BB2F90800A6F749 /* User.swift in Sources */,
-				D31272B61D7B3BF3009A76F8 /* WebSocket.swift in Sources */,
 				D39780081BAEDE540016865A /* DataModel.xcdatamodeld in Sources */,
 				D334BD791D6B1B3F009D478A /* Room.swift in Sources */,
 				D34FA1711BAC6B9C00F79FDD /* SecondViewController.swift in Sources */,

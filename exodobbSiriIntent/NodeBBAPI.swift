@@ -16,16 +16,18 @@ class NodeBBAPI {
     static let sharedInstance = NodeBBAPI()
     
     let BASE_URL = "https://exo.do/api/"
-    
+    var COOKIE:String
+    /*
     let WS_SERVER = "wss://exo.do/socket.io/?EIO=3&transport=websocket"
     var ws:WebSocket
-    var messageNum = 421
+    var messageNum = 421*/
     
     init() {
-        ws = WebSocket(WS_SERVER)
+        //ws = WebSocket(WS_SERVER)
+        COOKIE = ""
     }
     
-    func get(_ url:String, cookie:String, onCompletion:ServiceResponse)
+    func get(_ url:String, cookie:String, onCompletion:@escaping ServiceResponse)
     {
         let finalUrl = "\(BASE_URL)\(url)"
         var request = URLRequest(url: URL(string: finalUrl)!)
@@ -66,19 +68,67 @@ class NodeBBAPI {
         }
     }
     
-    func searchTopicByTitle(_ term:String, cookie:String, onCompletion:ServiceResponse)
+    
+    // REST API Methods
+    func searchTopicByTitle(_ term:String, cookie:String, onCompletion:@escaping ServiceResponse)
     {
         let path = "search/\(term)?in=titles".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         get(path!, cookie: cookie, onCompletion: onCompletion)
     }
     
+    func getRecentTopics(_ page:Int, onCompletion:@escaping ServiceResponse)
+    {
+        let path = "recent?page=\(page)"
+        
+        get(path, cookie: COOKIE, onCompletion: onCompletion)
+    }
     
+    func getTopicPosts(_ slug:String, page:Int, onCompletion:@escaping ServiceResponse)
+    {
+        let path = "topic/\(slug)/?page=\(page)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        
+        get(path!, cookie: COOKIE, onCompletion: onCompletion)
+    }
+    
+    func getChats(onCompletion:@escaping ServiceResponse)
+    {
+        let path = "chats"
+        
+        get(path, cookie: COOKIE, onCompletion: onCompletion)
+    }
+    
+    func getChatRoom(_ roomId:String, onCompletion:@escaping ServiceResponse)
+    {
+        let path = "chats/\(roomId)"
+        
+        get(path, cookie: COOKIE, onCompletion: onCompletion)
+    }
+    
+    func getUser(_ userSlug:String, onCompletion:@escaping ServiceResponse)
+    {
+        let path = "user/\(userSlug)"
+        
+        get(path, cookie: COOKIE, onCompletion: onCompletion)
+    }
+    
+    func getNotifications(onCompletion:@escaping ServiceResponse)
+    {
+        let path = "notifications"
+        
+        get(path, cookie: COOKIE, onCompletion: onCompletion)
+    }
+    
+    
+    
+    /*
+    // WEBSOCKET API Methods
     func initWSEvents(){
         
         ws = WebSocket(WS_SERVER)
         ws.event.open = {
             print("opened")
+            self.Ping()
         }
         ws.event.close = { code, reason, clean in
             print(reason)
@@ -96,13 +146,35 @@ class NodeBBAPI {
         }
     }
  
+    func Ping(){
+        ws.send("2") // Send ping..
+        var delta: Int64 = 10 * Int64(NSEC_PER_SEC)
+        var time = DispatchTime.now() + Double(delta) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: time, execute: {
+            self.Ping()
+        })
+    }
+    
     func sendPost(_ message:String, tid:String)
     {
         let msg = "\(messageNum)[\"posts.reply\",{\"tid\":\(tid),\"content\":\"\(message)\",\"lock\":false}]"
         ws.send(msg)
     }
  
+    func markTopicAsRead(_ id:Int)
+    {
+        let msg = "\(messageNum)[\"topics.markAsRead\",[\(id)]]"
+        ws.send(msg)
+    }
     
+    func markAllTopicsAsRead()
+    {
+        let msg = "\(messageNum)[\"topics.markAllRead\"]"
+        ws.send(msg)
+    }*/
+    
+    
+    // UTILS
     func getCookie() -> String
     {
         let defaults = UserDefaults(suiteName: "group.exodobb")
@@ -114,6 +186,11 @@ class NodeBBAPI {
         else{
             return ""
         }
+    }
+    
+    func useCookie()
+    {
+        COOKIE = self.getCookie()
     }
  
 }

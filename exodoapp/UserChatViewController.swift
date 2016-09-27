@@ -8,7 +8,6 @@
 
 import UIKit
 
-var messages = ["Loading.."]
 
 class UserChatViewController: UIViewController {
 
@@ -17,6 +16,8 @@ class UserChatViewController: UIViewController {
     @IBOutlet var webView: UIWebView!
     @IBOutlet var navigationBar: UINavigationItem!
     @IBOutlet var messageTxt: UITextField!
+    
+    var messages = ["Error!"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,35 +41,24 @@ class UserChatViewController: UIViewController {
     // Request Chats
     func requestMessages()
     {
-        let msg = "\(messageNum)[\"modules.chats.get\",{\"roomId\":\"\(room.rid!)\",\"since\":\"recent\"}]"
-        ws.send(msg)
-    }
-    
-    open func updateMessages(_ recvData:String)
-    {
-        //print("UPDATEMSGS: \(recvData)")
-        // I have to delete last char ]"
-        let cleanData = recvData.substring(with: (recvData.startIndex ..< recvData.characters.index(recvData.endIndex, offsetBy: -1)))
-        
-        //print("CLEANED!!")
-        //print(cleanData)
-        
-        do{
-            let json = try JSONSerialization.jsonObject(with: cleanData.data(using: String.Encoding.utf8)!, options: .allowFragments) as? [Dictionary<String, AnyObject>]
+        NodeBBAPI.sharedInstance.getChatRoom(room.rid) { (err, json) in
             
-            // let nextStart = (json!["nextStart"] as? Int)!
-            //let users = json!["users"] as? [Dictionary<String, AnyObject>]
-            
-            messages = []
-            for m in json!{
-                //print(t["tid"])
-                let msg = m["content"] as! String
-                //print(msg)
-                messages.insert(msg, at: 0)
+            self.messages = []
+            if let msgs = json?["messages"] as? [Dictionary<String, AnyObject>]
+            {
+                for m in msgs{
+                    //print(t["tid"])
+                    let msg = m["content"] as! String
+                    //print(msg)
+                    self.messages.insert(msg, at: 0)
+                }
             }
             
-        }catch{
-            print("ERROR")
+            // Main UI Thread
+            DispatchQueue.main.async(execute: { () -> Void in
+                self.showMessagesOnWebView()
+            })
+            
         }
     }
     
