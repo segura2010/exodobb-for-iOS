@@ -15,10 +15,6 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var maxPage = 1
     
     var posts = [Post]()
-    
-    var BASE_URL = "https://exo.do/api/"
-    var cookie: String!
-    //var ws = nil
 
     @IBOutlet var closeBtn: UIButton!
     
@@ -79,7 +75,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 let pid = post.pid
                 let tid = post.tid
                 //print("FAV \(pid)")
-                self.unfavPost(pid!, tid: tid!)
+                NodeBBAPI.sharedInstance.unfavPost(pid!, tid: tid!)
             }
         }else{
             favAction = UITableViewRowAction(style: .normal, title: "FAV") { (action: UITableViewRowAction!, indexPath: IndexPath!) -> Void in
@@ -87,7 +83,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 let pid = post.pid
                 let tid = post.tid
                 //print("FAV \(pid)")
-                self.favPost(pid!, tid: tid!)
+                NodeBBAPI.sharedInstance.favPost(pid!, tid: tid!)
             }
         }
         favAction.backgroundColor = UIColor.orange
@@ -97,7 +93,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let pid = post.pid
             let tid = post.tid
             //print("+1 \(pid)")
-            self.upvotePost(pid!, tid: tid!)
+            NodeBBAPI.sharedInstance.upvotePost(pid!, tid: tid!)
         }
         repMoreAction.backgroundColor = UIColor.green
         
@@ -106,7 +102,7 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let pid = post.pid
             let tid = post.tid
             //print("-1 \(pid)")
-            self.downvotePost(pid!, tid: tid!)
+            NodeBBAPI.sharedInstance.downvotePost(pid!, tid: tid!)
         }
         repMinusAction.backgroundColor = UIColor.red
         
@@ -137,25 +133,6 @@ class TopicViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
     }
-    
-    func favPost(_ pid: Int, tid:Int){
-        let msg = "\(messageNum)[\"posts.favourite\",{\"pid\":\"\(pid)\",\"room_id\":\"topic_\(tid)\"}]"
-        ws.send(msg)
-    }
-    func unfavPost(_ pid: Int, tid:Int){
-        let msg = "\(messageNum)[\"posts.unfavourite\",{\"pid\":\"\(pid)\",\"room_id\":\"topic_\(tid)\"}]"
-        ws.send(msg)
-    }
-    
-    func upvotePost(_ pid: Int, tid:Int){
-        let msg = "\(messageNum)[\"posts.upvote\",{\"pid\":\"\(pid)\",\"room_id\":\"topic_\(tid)\"}]"
-        ws.send(msg)
-    }
-    func downvotePost(_ pid: Int, tid:Int){
-        let msg = "\(messageNum)[\"posts.downvote\",{\"pid\":\"\(pid)\",\"room_id\":\"topic_\(tid)\"}]"
-        ws.send(msg)
-    }
-    
 
     
     // MARK: - Navigation

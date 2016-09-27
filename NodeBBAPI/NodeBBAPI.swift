@@ -12,18 +12,18 @@ import Foundation
 typealias ServiceResponse = (NSError?, [String:AnyObject]?) -> Void
 typealias ServiceBoolResponse = (NSError?, Bool) -> Void
 
+// Global..
+let WS_SERVER = "wss://exo.do/socket.io/?EIO=3&transport=websocket"
+var ws = WebSocket(WS_SERVER)
+var messageNum = 421
+
 class NodeBBAPI {
     static let sharedInstance = NodeBBAPI()
     
     let BASE_URL = "https://exo.do/api/"
     var COOKIE:String
-    /*
-    let WS_SERVER = "wss://exo.do/socket.io/?EIO=3&transport=websocket"
-    var ws:WebSocket
-    var messageNum = 421*/
     
     init() {
-        //ws = WebSocket(WS_SERVER)
         COOKIE = ""
     }
     
@@ -121,11 +121,10 @@ class NodeBBAPI {
     
     
     
-    /*
+    
     // WEBSOCKET API Methods
     func initWSEvents(){
         
-        ws = WebSocket(WS_SERVER)
         ws.event.open = {
             print("opened")
             self.Ping()
@@ -133,7 +132,7 @@ class NodeBBAPI {
         ws.event.close = { code, reason, clean in
             print(reason)
             print("close")
-            self.ws = WebSocket(self.WS_SERVER)
+            ws = WebSocket(WS_SERVER)
             self.initWSEvents()
         }
         ws.event.error = { error in
@@ -141,7 +140,7 @@ class NodeBBAPI {
         }
         ws.event.message = { message in
             if let text = message as? String {
-                
+                //print("recv: \(text)")
             }
         }
     }
@@ -155,9 +154,14 @@ class NodeBBAPI {
         })
     }
     
-    func sendPost(_ message:String, tid:String)
+    func sendPost(_ message:String, tid:Int)
     {
         let msg = "\(messageNum)[\"posts.reply\",{\"tid\":\(tid),\"content\":\"\(message)\",\"lock\":false}]"
+        ws.send(msg)
+    }
+    
+    func sendChatMessage(_ message:String, roomId: String){
+        let msg = "\(messageNum)[\"modules.chats.send\",{\"roomId\":\"\(roomId)\",\"message\":\"\(message)\"}]"
         ws.send(msg)
     }
  
@@ -171,8 +175,30 @@ class NodeBBAPI {
     {
         let msg = "\(messageNum)[\"topics.markAllRead\"]"
         ws.send(msg)
-    }*/
+    }
     
+    func favPost(_ pid: Int, tid:Int){
+        let msg = "\(messageNum)[\"posts.favourite\",{\"pid\":\"\(pid)\",\"room_id\":\"topic_\(tid)\"}]"
+        ws.send(msg)
+    }
+    func unfavPost(_ pid: Int, tid:Int){
+        let msg = "\(messageNum)[\"posts.unfavourite\",{\"pid\":\"\(pid)\",\"room_id\":\"topic_\(tid)\"}]"
+        ws.send(msg)
+    }
+    
+    func upvotePost(_ pid: Int, tid:Int){
+        let msg = "\(messageNum)[\"posts.upvote\",{\"pid\":\"\(pid)\",\"room_id\":\"topic_\(tid)\"}]"
+        ws.send(msg)
+    }
+    func downvotePost(_ pid: Int, tid:Int){
+        let msg = "\(messageNum)[\"posts.downvote\",{\"pid\":\"\(pid)\",\"room_id\":\"topic_\(tid)\"}]"
+        ws.send(msg)
+    }
+    
+    func getQuote(_ pid: Int){ // TODO: Check if we can do it with HTTP REST API
+        let msg = "\(messageNum)[\"posts.getRawPost\",\"\(pid)\"]"
+        ws.send(msg)
+    }
     
     // UTILS
     func getCookie() -> String

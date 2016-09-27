@@ -46,12 +46,7 @@ class PostViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func getQuote(_ pid: Int){
-        let msg = "\(messageNum)[\"posts.getRawPost\",\"\(pid)\"]"
-        ws.send(msg)
-    }
-    
-    open func updateQuote(_ recvData: String){
+    func updateQuote(_ recvData: String){
         let cleanData = recvData.substring(with: (recvData.startIndex ..< recvData.characters.index(recvData.endIndex, offsetBy: -1)))
         
         self.replyTextView.text = cleanData
@@ -62,14 +57,10 @@ class PostViewController: UIViewController {
         var refreshAlert = UIAlertController(title: "Sure?", message: "Send reply?", preferredStyle: UIAlertControllerStyle.alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-            print("Handle Ok logic here")
-            let msg = "\(messageNum)[\"posts.reply\",{\"tid\":\(self.post.tid!),\"content\":\"\(self.replyTextView.text!)\",\"lock\":false}]"
-            print(msg)
-            ws.send(msg)
+            NodeBBAPI.sharedInstance.sendPost(self.replyTextView.text!, tid: self.post.tid!)
         }))
         
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action: UIAlertAction!) in
-            print("Handle Cancel Logic here")
         }))
         
         present(refreshAlert, animated: true, completion: nil)

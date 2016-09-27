@@ -79,9 +79,7 @@ class UserChatViewController: UIViewController {
     {
         let myMsg = messageTxt.text!
         messageTxt.text = ""
-        let msg = "\(messageNum)[\"modules.chats.send\",{\"roomId\":\"\(room.rid!)\",\"message\":\"\(myMsg)\"}]"
-        print(msg)
-        ws.send(msg)
+        NodeBBAPI.sharedInstance.sendChatMessage(myMsg, roomId: room.rid)
     }
     
     @IBAction func sendBtnClick(_ sender: AnyObject) {
