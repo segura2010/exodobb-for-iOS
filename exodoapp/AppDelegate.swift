@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         let addStatusBar = UIView()
-        addStatusBar.frame = CGRect(x: 0, y: 0, width: 320, height: 20);
+        addStatusBar.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 20);
         addStatusBar.backgroundColor = UIColor.orange
         self.window?.rootViewController?.view .addSubview(addStatusBar)
         

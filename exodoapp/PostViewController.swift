@@ -24,9 +24,11 @@ class PostViewController: UIViewController {
         
         // getQuote(post.pid)
         
-        let html = "<link rel=\"stylesheet\" type=\"text/css\" href=\"/stylesheet.css\"> \(post.content!)"
+        let style = "<link rel=\"stylesheet\" type=\"text/css\" href=\"/stylesheet.css\">"
+        let scripts = "<script> var spoilers = document.getElementsByClassName('ns-spoiler'); for(var s in spoilers){ spoilers[s].onclick = function(){ this.setAttribute('data-open', 'true') } } </script>"
+        let html = "\(style) \(post.content!) \(scripts)"
         
-        webView.loadHTMLString(html, baseURL:URL(string: "http://exo.do/"))
+        webView.loadHTMLString(html, baseURL:URL(string: "https://exo.do/"))
         
         replyTextView.text = "@\(post.userslug!) "
         

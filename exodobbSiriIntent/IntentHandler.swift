@@ -85,9 +85,9 @@ class IntentHandler: INExtension, INSendMessageIntentHandling, INSearchForMessag
                         
                         // So we use the first one
                         let title = posts[0]["topic"]?["title"]
-                        let tid = "\(posts[0]["topic"]!["tid"]!)"
+                        let tid = "\(posts[0]["topic"]!["tid"]!)" as! String
                         print("Selected: \(title)")
-                        person = INPerson(handle: tid, displayName: title as! String?, contactIdentifier: tid)
+                        person = INPerson(handle: tid, displayName: title as! String?, contactIdentifier: tid as! String)
                         matchingContacts.append(person)
                     }
                     
@@ -131,7 +131,7 @@ class IntentHandler: INExtension, INSendMessageIntentHandling, INSearchForMessag
     func confirm(sendMessage intent: INSendMessageIntent, completion: @escaping (INSendMessageIntentResponse) -> Void) {
         // Verify user is authenticated and your app is ready to send a message.
         
-        //NodeBBAPI.sharedInstance.initWSEvents()
+        NodeBBAPI.sharedInstance.initWSEvents()
         
         let userActivity = NSUserActivity(activityType: NSStringFromClass(INSendMessageIntent.self))
         let response = INSendMessageIntentResponse(code: .ready, userActivity: userActivity)
@@ -143,11 +143,11 @@ class IntentHandler: INExtension, INSendMessageIntentHandling, INSearchForMessag
         // Implement your application logic to send a message here.
         
         message = intent.content!
-        let tid = intent.recipients?[0].contactIdentifier
+        let tid = intent.recipients![0].contactIdentifier!
         //let tid = intent.recipients?[0].contactIdentifier
         print("SENDING: \(message) to TID: \(tid)")
         
-        //NodeBBAPI.sharedInstance.sendPost(message, tid:tid!)
+        NodeBBAPI.sharedInstance.sendPost(message, tid:String(tid)!)
         
         let userActivity = NSUserActivity(activityType: NSStringFromClass(INSendMessageIntent.self))
         let response = INSendMessageIntentResponse(code: .success, userActivity: userActivity)

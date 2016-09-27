@@ -159,6 +159,11 @@ class NodeBBAPI {
         let msg = "\(messageNum)[\"posts.reply\",{\"tid\":\(tid),\"content\":\"\(message)\",\"lock\":false}]"
         ws.send(msg)
     }
+    func sendPost(_ message:String, tid:String)
+    {
+        let msg = "\(messageNum)[\"posts.reply\",{\"tid\":\(tid),\"content\":\"\(message)\",\"lock\":false}]"
+        ws.send(msg)
+    }
     
     func sendChatMessage(_ message:String, roomId: String){
         let msg = "\(messageNum)[\"modules.chats.send\",{\"roomId\":\"\(roomId)\",\"message\":\"\(message)\"}]"
