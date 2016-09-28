@@ -24,6 +24,7 @@ class UserChatViewController: UIViewController {
         
         navigationBar.title = room.username
         requestMessages()
+        NodeBBAPI.sharedInstance.markChatAsRead(room.rid)
 
         // Do any additional setup after loading the view.
     }

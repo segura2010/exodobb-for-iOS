@@ -16,6 +16,7 @@ class Room{
     var picture: String!
     var status: String!
     var slug: String!
+    var unread: Bool!
     
     init(room: Dictionary<String, AnyObject>){
         username = room["usernames"] as! String
@@ -29,6 +30,8 @@ class Room{
         rid = room["roomId"] as! String
         picture = (room["users"] as! [AnyObject])[0]["picture"] as! String
         status = (room["users"] as! [AnyObject])[0]["status"] as! String
+        
+        unread = room["unread"] as! Bool
     }
     
 }

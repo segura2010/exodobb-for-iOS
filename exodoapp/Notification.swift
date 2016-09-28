@@ -15,6 +15,7 @@ class Notification{
     var nid:String!
     var slug:String!
     var datetime:String!
+    var read:Bool!
     
     init(notif: Dictionary<String, AnyObject>){
         
@@ -23,6 +24,7 @@ class Notification{
         nid = notif["nid"] as! String
         slug = notif["path"] as! String
         datetime = notif["datetimeISO"] as! String
+        read = notif["read"] as! Bool
         
     }
     

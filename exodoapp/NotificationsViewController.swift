@@ -13,6 +13,7 @@ class NotificationsViewController: UITableViewController {
     var refreshC = UIRefreshControl()
     
     var notifications = [Notification]()
+    var notRead = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +88,7 @@ class NotificationsViewController: UITableViewController {
     
     func requestNotifications()
     {
+        self.notRead = 0
         NodeBBAPI.sharedInstance.getNotifications { (err, json) in
             
             let nots = json!["notifications"] as? [Dictionary<String, AnyObject>]
@@ -95,12 +97,25 @@ class NotificationsViewController: UITableViewController {
             for n in nots!{
                 let notif = Notification(notif: n)
                 self.notifications.append(notif)
+                
+                if !notif.read
+                {
+                    self.notRead = self.notRead + 1
+                }
             }
             
             // Main UI Thread
             DispatchQueue.main.async(execute: { () -> Void in
                 self.tableView.reloadData()
                 self.refreshC.endRefreshing()
+                if self.notRead > 0
+                {
+                    self.tabBarController?.tabBar.items?[2].badgeValue = "\(self.notRead)"
+                }
+                else
+                {
+                    self.tabBarController?.tabBar.items?[2].badgeValue = nil
+                }
             })
             
         }

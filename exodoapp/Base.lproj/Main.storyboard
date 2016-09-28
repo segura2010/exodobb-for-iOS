@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--First View Controller-->
+        <!--Recents-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="ExodoBB" customModuleProvider="target" sceneMemberID="viewController">
@@ -118,7 +118,7 @@
                             <constraint firstItem="5Mc-uc-z8v" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="tuT-zZ-hUM"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="recents" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Recents" image="recent" selectedImage="recent" id="acW-dT-cKf"/>
                     <navigationItem key="navigationItem" id="2gh-I1-S3u"/>
                     <connections>
                         <outlet property="indicator" destination="lo2-mh-uNG" id="7mY-Qz-4yC"/>
@@ -561,6 +561,11 @@
                                             <color key="textColor" red="0.61474459948011639" green="0.65394176136363635" blue="0.63838839642091172" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="alert" translatesAutoresizingMaskIntoConstraints="NO" id="4W5-8c-laT">
+                                            <frame key="frameInset" minX="302" minY="25" width="20" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="tintColor" red="1" green="0.57768821825404515" blue="0.1418576612501582" alpha="1" colorSpace="calibratedRGB"/>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="lKv-kI-WiK" secondAttribute="bottom" constant="3.5" id="3Yb-DG-8KL"/>
@@ -573,6 +578,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="alertIcon" destination="4W5-8c-laT" id="FQr-e1-mTi"/>
                                     <outlet property="picture" destination="lKv-kI-WiK" id="ycC-VS-NJq"/>
                                     <outlet property="statusLbl" destination="4lz-GB-H9M" id="uHb-5i-uac"/>
                                     <outlet property="username" destination="7ZE-wH-FB1" id="mq4-PQ-VOq"/>
@@ -683,7 +689,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="92"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="Gqd-f5-7UA" id="TcC-lJ-sV4">
-                                    <frame key="frameInset" width="375" height="91"/>
+                                    <frame key="frameInset" width="375" height="91.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="bodyShort" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sjU-xR-ZRO">
@@ -700,11 +706,19 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="|" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5n-KW-Ilc">
+                                            <frame key="frameInset" minX="-16" width="27" height="92"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="150"/>
+                                            <color key="textColor" red="1" green="0.5002230172813299" blue="0.055986531159218811" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="bodyLong" destination="Xoq-3I-lyn" id="r73-99-pPV"/>
                                     <outlet property="bodyShort" destination="sjU-xR-ZRO" id="0BX-PG-Xtk"/>
+                                    <outlet property="unreadNotificationBar" destination="U5n-KW-Ilc" id="2aq-oN-yDv"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -723,7 +737,7 @@
         <scene sceneID="rui-AP-ySL">
             <objects>
                 <navigationController title="Notifications" id="pQx-It-AWX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Notifications" id="N1T-s4-dH4"/>
+                    <tabBarItem key="tabBarItem" title="Notifications" image="notification" selectedImage="notification" id="N1T-s4-dH4"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xq5-TV-zYx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -739,7 +753,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="alert" width="25" height="25"/>
         <image name="chat" width="38" height="38"/>
+        <image name="notification" width="18" height="18"/>
+        <image name="recent" width="18" height="18"/>
         <image name="settings" width="38" height="38"/>
     </resources>
 </document>

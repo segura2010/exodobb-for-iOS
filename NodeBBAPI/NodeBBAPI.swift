@@ -182,6 +182,18 @@ class NodeBBAPI {
         ws.send(msg)
     }
     
+    func markChatAsRead(_ roomId:String)
+    {
+        let msg = "\(messageNum)[\"modules.chats.markRead\",[\(roomId)]]"
+        ws.send(msg)
+    }
+    
+    func markAllNotificationsAsRead()
+    {
+        let msg = "\(messageNum)[\"notifications.markAllRead\"]"
+        ws.send(msg)
+    }
+    
     func favPost(_ pid: Int, tid:Int){
         let msg = "\(messageNum)[\"posts.favourite\",{\"pid\":\"\(pid)\",\"room_id\":\"topic_\(tid)\"}]"
         ws.send(msg)

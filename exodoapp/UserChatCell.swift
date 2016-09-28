@@ -14,6 +14,7 @@ class UserChatCell: UITableViewCell {
     @IBOutlet weak var picture: UIImageView!
     
     @IBOutlet var statusLbl: UILabel!
+    @IBOutlet var alertIcon: UIImageView!
     
     func configureCell(_ u:Room)
     {
@@ -51,6 +52,16 @@ class UserChatCell: UITableViewCell {
             statusLbl.textColor = UIColor.red
         default:
             statusLbl.textColor = UIColor.gray
+        }
+        
+        if !u.unread
+        {
+            alertIcon.isHidden = true
+        }
+        else
+        {
+            alertIcon.isHidden = false
+            alertIcon.tintColor = UIColor.orange
         }
         
     }

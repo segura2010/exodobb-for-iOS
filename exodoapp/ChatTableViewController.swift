@@ -13,6 +13,8 @@ var chats = [Room]()
 class ChatTableViewController: UITableViewController {
     
     var refreshC = UIRefreshControl()
+    
+    var unread = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +89,7 @@ class ChatTableViewController: UITableViewController {
     
     func requestChats()
     {
+        self.unread = 0
         NodeBBAPI.sharedInstance.getChats { (err, json) in
             
             let users = json!["rooms"] as? [Dictionary<String, AnyObject>]
@@ -95,12 +98,26 @@ class ChatTableViewController: UITableViewController {
             for u in users!{
                 let room = Room(room: u)
                 chats.append(room)
+                
+                if room.unread!
+                {
+                    self.unread = self.unread + 1
+                }
             }
             
             // Main UI Thread
             DispatchQueue.main.async(execute: { () -> Void in
                 self.tableView.reloadData()
                 self.refreshC.endRefreshing()
+                
+                if self.unread > 0
+                {
+                    self.tabBarController?.tabBar.items?[1].badgeValue = "\(self.unread)"
+                }
+                else
+                {
+                    self.tabBarController?.tabBar.items?[1].badgeValue = nil
+                }
             })
             
         }
