@@ -46,6 +46,11 @@ class Post {
             self.userslug = ""
             self.picture = ""
         }
+        
+        let deleted = threadDic["deleted"] as! Bool
+        if deleted{
+            self.content = threadDic["originalContent"] as? String
+        }
     }
     
 }

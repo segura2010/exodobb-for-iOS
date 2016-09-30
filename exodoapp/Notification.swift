@@ -17,6 +17,10 @@ class Notification{
     var datetime:String!
     var read:Bool!
     
+    // If it is a reply or mention
+    var tid:Int!
+    var pid:Int!
+    
     init(notif: Dictionary<String, AnyObject>){
         
         bodyShort = notif["bodyShort"] as! String
@@ -25,6 +29,13 @@ class Notification{
         slug = notif["path"] as! String
         datetime = notif["datetimeISO"] as! String
         read = notif["read"] as! Bool
+        
+        if let topicId = notif["tid"] as? Int{
+            tid = topicId
+        }
+        if let postId = notif["pid"] as? Int{
+            pid = postId
+        }
         
     }
     

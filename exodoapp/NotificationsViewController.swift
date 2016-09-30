@@ -85,6 +85,40 @@ class NotificationsViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let notif = notifications[(indexPath as NSIndexPath).row]
+        if notif.pid != nil{
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let postView = storyboard.instantiateViewController(withIdentifier: "PostVC") as! PostViewController
+            
+            var postJson = [String:AnyObject]()
+            postJson["content"] = notif.bodyLong as AnyObject?
+            postJson["tid"] = notif.tid as AnyObject?
+            postJson["pid"] = notif.pid as AnyObject?
+            postJson["timestampISO"] = "" as AnyObject?
+            postJson["favourited"] = false as AnyObject?
+            postJson["reputation"] = 0 as AnyObject?
+            postJson["votes"] = 0 as AnyObject?
+            postJson["deleted"] = false as AnyObject?
+            
+            
+            var post = Post(threadDic: postJson)
+            
+            let parseNotif = notif.bodyShort.characters.split(separator: ",").map(String.init)
+            
+            // remove first space
+            let index = parseNotif[1].index(parseNotif[1].startIndex, offsetBy: 1)
+            post.userslug = parseNotif[1].substring(from: index)
+            
+            postView.post = post
+            navigationController?.pushViewController(postView, animated: true)
+            
+        }
+        
+    }
+    
     
     func requestNotifications()
     {
@@ -121,24 +155,15 @@ class NotificationsViewController: UITableViewController {
         }
     }
     
-    
     /* MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        // "modules.chats.get",{"touid":"498","since":"recent"}
+     
         
-        let MessagesVC = segue.destination as! UserChatViewController
-        if let indexPath = self.tableView.indexPath(for: sender as! UITableViewCell){
-            if((indexPath as NSIndexPath).row < chats.count){
-                let c = chats[(indexPath as NSIndexPath).row]
-                MessagesVC.room = c
-            }
-        }
-        
-    }
-    */
+    }*/
+    
     
     func refreshControlStateChanged()
     {
